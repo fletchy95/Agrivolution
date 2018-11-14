@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">CropHealer</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">Agrivolution</string>
+    <string-array name="type">
+        <item>Select User Type</item>
+        <item>Farmer</item>
+        <item>Expert</item>
+        <item>Other</item>
+    </string-array>
 </resources>
