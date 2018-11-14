@@ -62,7 +62,41 @@
         <Spinner
             android:id="@+id/spinnerUserType"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:id="@+id/farmName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Farm Name"
+            android:visibility="invisible" />
+        <EditText
+            android:id="@+id/farmAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Farm Address"
+            android:visibility="invisible" />
+        <EditText
+            android:id="@+id/yoe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Years of Experience"
+            android:visibility="invisible" />
+        <EditText
+            android:id="@+id/specialization"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Specialization"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/button"
@@ -76,5 +110,6 @@
             android:layout_height="wrap_content"
             android:text="Already Registered? Login !"
             android:typeface="normal" />
+
     </LinearLayout>
 </ScrollView>
