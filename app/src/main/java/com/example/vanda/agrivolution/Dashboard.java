@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard.this, Login.class);
                 startActivity(intent);
+                Toast.makeText(Dashboard.this," Logged out Successfully !", Toast.LENGTH_SHORT).show();
             }
         });
     }
