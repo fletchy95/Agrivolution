@@ -20,6 +20,8 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     EditText etxtYOE;
     EditText etxtSpecialization;
     Spinner spnUserSelection;
+    TextView ExistingUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +38,16 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         etxtYOE = findViewById(R.id.yoe);
         etxtSpecialization = findViewById(R.id.specialization);
         //Dropdown ends
+
+        ExistingUser = (TextView)findViewById(R.id.tvExistingUser);
+
+        ExistingUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Registration.this, Login.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -65,6 +77,8 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
             etxtYOE.setVisibility(View.GONE);
         }
     }
+
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent)
