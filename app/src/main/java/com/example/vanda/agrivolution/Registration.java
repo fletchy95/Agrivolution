@@ -71,6 +71,13 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
             specialization.setVisibility(View.VISIBLE);
             yoe.setVisibility(View.VISIBLE);
         }
+        else if (selected.equals("Other"))
+        {
+            farmName.setVisibility(View.GONE);
+            farmAddress.setVisibility(View.GONE);
+            specialization.setVisibility(View.GONE);
+            yoe.setVisibility(View.GONE);
+        }
     }
 
     @Override
