@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/etCpassword"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Confirm Password"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
 
         <Spinner
             android:id="@+id/spinnerUserType"
@@ -99,7 +99,7 @@
             android:visibility="invisible" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register" />
