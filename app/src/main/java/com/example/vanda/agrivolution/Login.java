@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
 
     }
     private void validate(String userEmail, String userPassword){
-        if((userEmail.equals("Admin")) && (userPassword.equals("1234"))){
+        if((userEmail.equals("admin@fairfield.edu")) && (userPassword.equals("1234"))){
             Intent intent = new Intent(Login.this, Dashboard.class);
             startActivity(intent);
             Toast.makeText(this,"Login Successful !", Toast.LENGTH_SHORT).show();
