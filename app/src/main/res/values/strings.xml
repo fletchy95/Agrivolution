@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Agrivolution</string>
+    <string name="community">Community</string>
+    <string name="shop_for_products">Shop for Products</string>
+    <string name="submit_an_issue">Submit an Issue</string>
+    <string name="heat_map">Heat Map</string>
+    <string name="encyclopedia">Encyclopedia</string>
+    <string name="logout">Logout</string>
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>
