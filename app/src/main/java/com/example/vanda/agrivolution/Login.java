@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
@@ -40,14 +41,16 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, Registration.class);
                 startActivity(intent);
+
             }
         });
 
     }
     private void validate(String userEmail, String userPassword){
-        if((userEmail.equals("Admin")) && (userPassword.equals("1234"))){
+        if((userEmail.equals("admin@fairfield.edu")) && (userPassword.equals("1234"))){
             Intent intent = new Intent(Login.this, Dashboard.class);
             startActivity(intent);
+            Toast.makeText(this,"Login Successful !", Toast.LENGTH_SHORT).show();
         }
         else {
             counter--;
