@@ -6,6 +6,7 @@
     <string name="heat_map">Heat Map</string>
     <string name="encyclopedia">Encyclopedia</string>
     <string name="logout">Logout</string>
+    <string name="accountinfo">accountInfo</string>
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>

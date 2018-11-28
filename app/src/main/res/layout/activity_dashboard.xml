@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard">
 
-    <TextView
-        android:id="@+id/tvLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/logout"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
-
     <ImageButton
         android:id="@+id/btnSubmitIssue"
         android:layout_width="139dp"
@@ -33,6 +14,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginTop="13dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/submit_an_issue"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
@@ -53,6 +35,7 @@
         android:layout_width="138dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/community"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/btnSubmitIssue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +67,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/shop_for_products"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/btnEncyclopedia"
         app:layout_constraintEnd_toStartOf="@+id/btnEncyclopedia"
@@ -108,6 +92,7 @@
         android:layout_width="139dp"
         android:layout_height="97dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/heat_map"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,6 +121,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginBottom="60dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/encyclopedia"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,5 +143,23 @@
         app:layout_constraintEnd_toEndOf="@+id/btnSubmitIssue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnAccount"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/accountinfo"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/account_img"
+        tools:srcCompat="@drawable/account_img" />
 
 </android.support.constraint.ConstraintLayout>
