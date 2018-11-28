@@ -27,7 +27,37 @@ public class Dashboard extends AppCompatActivity {
         btnShop = findViewById(R.id.btnShop);
         btnHeatMap = findViewById(R.id.btnHeatMap);
         btnEncyclopedia = findViewById(R.id.btnEncyclopedia);
-        // Will setup button Listeners once the pages for these have been created. 
+        // Will setup button Listeners once the pages for these have been created.
+        btnEncyclopedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, placeholder.class));
+            }
+        });
+        btnHeatMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, placeholder.class));
+            }
+        });
+        btnSubmitIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, placeholder.class));
+            }
+        });
+        btnShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, placeholder.class));
+            }
+        });
+        btnCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, placeholder.class));
+            }
+        });
         Logout = (TextView)findViewById(R.id.tvLogout);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,10 +67,6 @@ public class Dashboard extends AppCompatActivity {
                 Toast.makeText(Dashboard.this," Logged out Successfully !", Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-    protected void onClick_Encyclopedia()
-    {
 
     }
 }
