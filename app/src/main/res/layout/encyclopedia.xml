@@ -8,129 +8,141 @@
 
     <Button
         android:id="@+id/ButtonType"
-        android:layout_width="272dp"
+        android:layout_width="205dp"
         android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Type: Insect/Virus/Other"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="169dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="156dp" />
 
     <Button
-        android:id="@+id/buttonType"
-        android:layout_width="272dp"
+        android:id="@+id/ButtonType2"
+        android:layout_width="205dp"
         android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Type: Insect/Virus/Other"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="246dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="235dp" />
 
     <Button
-        android:id="@+id/buttonType2"
-        android:layout_width="272dp"
+        android:id="@+id/ButtonType3"
+        android:layout_width="205dp"
         android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Type: Insect/Virus/Other"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="329dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="320dp" />
 
     <Button
-        android:id="@+id/buttonType3"
-        android:layout_width="272dp"
+        android:id="@+id/ButtonType4"
+        android:layout_width="205dp"
         android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Type: Insect/Virus/Other"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="410dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="400dp" />
 
     <SearchView
         android:layout_width="368dp"
         android:layout_height="46dp"
+        android:background="@drawable/textbutton_background"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
 
     <Button
         android:id="@+id/ButtonAllPathogens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="139dp"
+        android:layout_height="35dp"
+        android:background="@drawable/textbutton_background"
         android:text="All Pathogens"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="65dp" />
 
     <Button
         android:id="@+id/ButtonName"
-        android:layout_width="106dp"
-        android:layout_height="37dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Name"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="132dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <Button
         android:id="@+id/ButtonName2"
-        android:layout_width="106dp"
-        android:layout_height="37dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Name"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="209dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="196dp" />
 
     <Button
         android:id="@+id/ButtonName3"
-        android:layout_width="106dp"
-        android:layout_height="37dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Name"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="292dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="278dp" />
 
     <Button
         android:id="@+id/ButtonName4"
-        android:layout_width="106dp"
-        android:layout_height="37dp"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/textbutton_background2"
         android:text="Name"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="373dp" />
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="360dp" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:background="@drawable/textbutton_background"
         android:text="+ Add"
-        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteX="316dp"
         tools:layout_editor_absoluteY="65dp" />
 
     <ImageButton
         android:id="@+id/ImageButtonPest1"
-        android:layout_width="72dp"
-        android:layout_height="67dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         app:srcCompat="@drawable/pest1"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="132dp" />
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <ImageButton
         android:id="@+id/imageButtonPest2"
-        android:layout_width="72dp"
-        android:layout_height="67dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         app:srcCompat="@drawable/pest1"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="209dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="196dp"
         tools:srcCompat="@drawable/pest2" />
 
     <ImageButton
         android:id="@+id/imageButtonPest3"
-        android:layout_width="72dp"
-        android:layout_height="67dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         app:srcCompat="@drawable/pest1"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="292dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="278dp"
         tools:srcCompat="@drawable/pest3" />
 
     <ImageButton
         android:id="@+id/imageButtonPest4"
-        android:layout_width="72dp"
-        android:layout_height="67dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         app:srcCompat="@drawable/pest1"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="373dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="360dp"
         tools:srcCompat="@drawable/pest4" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/ImageButtonHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         app:srcCompat="@drawable/ic_home"
         tools:layout_editor_absoluteX="39dp"
         tools:layout_editor_absoluteY="450dp" />
@@ -139,6 +151,7 @@
         android:id="@+id/ImageButtonCommunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         app:srcCompat="@drawable/ic_home"
         tools:layout_editor_absoluteX="168dp"
         tools:layout_editor_absoluteY="451dp"
@@ -148,6 +161,7 @@
         android:id="@+id/ImageButtonLibrary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         app:srcCompat="@drawable/ic_home"
         tools:layout_editor_absoluteX="300dp"
         tools:layout_editor_absoluteY="451dp"
