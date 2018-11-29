@@ -1,6 +1,7 @@
 package com.example.vanda.agrivolution;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.lang.reflect.Array;
@@ -34,6 +40,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     String selected;
 
     Boolean passwordMatch;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +48,8 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         setupUIViews();
+
+        auth = FirebaseAuth.getInstance();
 
         //Dropdown for the User Type
         UserSelection.setOnItemSelectedListener(this);
@@ -54,8 +63,19 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                if(validate()) {
                    //Upload data to database
-
-                   Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
+                   String email = Email.getText().toString().trim();
+                   String pwd = Password.getText().toString().trim();
+                    auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Registration.this, Login.class));
+                            }else{
+                                Toast.makeText(Registration.this,"Registration Failed !",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                }else if (!passwordMatch){
                    Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
                }
