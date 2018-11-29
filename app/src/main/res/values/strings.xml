@@ -1,13 +1,7 @@
 <resources>
     <string name="app_name">Agrivolution</string>
     <string name="type_insect_virus_other">Type: Insect/Virus/Other</string>
-    <string name="type_insect_virus_other">Type: Insect/Virus/Other</string>
-    <string name="type_insect_virus_other">Type: Insect/Virus/Other</string>
-    <string name="type_insect_virus_other">Type: Insect/Virus/Other</string>
     <string name="all_pathogens">All Pathogens</string>
-    <string name="name">Name</string>
-    <string name="name">Name</string>
-    <string name="name">Name</string>
     <string name="name">Name</string>
     <string name="add">+ Add</string>
     <string name="imgbtnpest1">imgbtnpest1</string>
@@ -15,11 +9,10 @@
     <string name="library">Library</string>
     <string name="home">Home</string>
     <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
+    <string name="type_insect_virus_other1">type_insect_virus_other1</string>
+    <string name="type_insect_virus_other3" />
+    <string name="type_insect_virus_other2">type_insect_virus_other2</string>
+    <string name="type_insect_virus_other5" />
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>
