@@ -7,6 +7,15 @@
     <string name="encyclopedia">Encyclopedia</string>
     <string name="logout">Logout</string>
     <string name="accountinfo">accountInfo</string>
+    <string name="type_insect_virus_other1" />
+    <string name="all_pathogens" />
+    <string name="name" />
+    <string name="add" />
+    <string name="imgbtnpest1" />
+    <string name="imgbtnpest2" />
+    <string name="home" />
+    <string name="library" />
+    <string name="comminity" />
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>
