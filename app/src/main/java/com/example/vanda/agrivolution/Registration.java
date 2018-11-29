@@ -38,7 +38,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     Button Register;
     TextView ExistingUser;
     String selected;
-
+    Button btnCancel;
     Boolean passwordMatch;
     private FirebaseAuth auth;
 
@@ -84,6 +84,14 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
                }
             }
         });
+        btnCancel = findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Registration.this, Login.class);
+                startActivity(intent1);
+            }
+    });
 
         ExistingUser.setOnClickListener(new View.OnClickListener() {
             @Override

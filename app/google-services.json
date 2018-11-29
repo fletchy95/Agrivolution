@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "135696871872",
-    "firebase_url": "https://crophealer-1696c.firebaseio.com",
-    "project_id": "crophealer-1696c",
-    "storage_bucket": "crophealer-1696c.appspot.com"
+    "project_number": "345054313944",
+    "firebase_url": "https://agrivolution-71a00.firebaseio.com",
+    "project_id": "agrivolution-71a00",
+    "storage_bucket": "agrivolution-71a00.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:135696871872:android:761c890d42d48e13",
+        "mobilesdk_app_id": "1:345054313944:android:761c890d42d48e13",
         "android_client_info": {
           "package_name": "com.example.vanda.agrivolution"
         }
       },
       "oauth_client": [
         {
-          "client_id": "135696871872-0i75gurpalchh0mbr156k8crpg2hfv5q.apps.googleusercontent.com",
+          "client_id": "345054313944-5j5r97q5vkavl2tutdvmp60a0b9eiu0m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBXZSbawwvU_jGV6mRhgDeKPachqfrh3gM"
+          "current_key": "AIzaSyDOAJOi1v4AWVKH5fdOcPejN7_SuyWP4Ac"
         }
       ],
       "services": {
