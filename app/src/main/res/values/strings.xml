@@ -1,18 +1,12 @@
 <resources>
     <string name="app_name">Agrivolution</string>
-    <string name="type_insect_virus_other">Type: Insect/Virus/Other</string>
-    <string name="all_pathogens">All Pathogens</string>
-    <string name="name">Name</string>
-    <string name="add">+ Add</string>
-    <string name="imgbtnpest1">imgbtnpest1</string>
-    <string name="comminity">Comminity</string>
-    <string name="library">Library</string>
-    <string name="home">Home</string>
-    <string name="imgbtnpest2">imgbtnpest2</string>
-    <string name="type_insect_virus_other1">type_insect_virus_other1</string>
-    <string name="type_insect_virus_other3" />
-    <string name="type_insect_virus_other2">type_insect_virus_other2</string>
-    <string name="type_insect_virus_other5" />
+    <string name="community">Community</string>
+    <string name="shop_for_products">Shop for Products</string>
+    <string name="submit_an_issue">Submit an Issue</string>
+    <string name="heat_map">Heat Map</string>
+    <string name="encyclopedia">Encyclopedia</string>
+    <string name="logout">Logout</string>
+    <string name="accountinfo">accountInfo</string>
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>

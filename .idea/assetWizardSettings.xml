@@ -16,26 +16,11 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="image">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="paddingPercent" value="5" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/pest4.jpg" />
-                                      <entry key="outputName" value="pest4" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/account_img.png" />
+                                      <entry key="outputName" value="account_img" />
                                     </map>
                                   </option>
                                 </PersistentState>
