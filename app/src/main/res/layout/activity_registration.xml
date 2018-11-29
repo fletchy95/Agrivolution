@@ -89,13 +89,14 @@
             android:inputType="textPersonName"
             android:hint="Specialization"
             android:visibility="invisible" />
+
         <EditText
             android:id="@+id/yoe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Years of Experience"
+            android:inputType="textPersonName|number"
             android:visibility="invisible" />
 
         <Button
@@ -103,6 +104,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register" />
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Registration" />
 
         <TextView
             android:id="@+id/tvExistingUser"
