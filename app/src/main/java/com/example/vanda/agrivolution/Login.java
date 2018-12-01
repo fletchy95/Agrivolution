@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class Login extends AppCompatActivity {
     private Button Login;
     private TextView signUp;
 
-    //private FirebaseAuth auth;
+    private FirebaseAuth auth;
     private int counter =5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
         if(user!= null){
             //finish();
-           Intent intent = new Intent(Login.this, Dashboard.class);
+            Intent intent = new Intent(Login.this, Dashboard.class);
         }
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +62,7 @@ public class Login extends AppCompatActivity {
 
     }
     private void validate(String userEmail, String userPassword){
-        /*auth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
@@ -77,19 +78,19 @@ public class Login extends AppCompatActivity {
 
                 }
             }
-        });*/
-        if((userEmail.equals("admin@fairfield.edu")) && (userPassword.equals("1234"))){
-            Intent intent = new Intent(Login.this, Dashboard.class);
-            startActivity(intent);
-            Toast.makeText(this,"Login Successful !", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            counter--;
-
-            if (counter == 0){
-                Login.setEnabled(false);
-            }
-        }
+        });
+//        if((userEmail.equals("admin@fairfield.edu")) && (userPassword.equals("1234"))){
+//            Intent intent = new Intent(Login.this, Dashboard.class);
+//            startActivity(intent);
+//            Toast.makeText(this,"Login Successful !", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            counter--;
+//
+//            if (counter == 0){
+//                Login.setEnabled(false);
+//            }
+//        }
 
     }
 }

@@ -13,12 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
-
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.lang.reflect.Array;
 
@@ -38,9 +36,9 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     Button Register;
     TextView ExistingUser;
     String selected;
-    Button btnCancel;
+
     Boolean passwordMatch;
-   //private FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,7 +47,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_registration);
         setupUIViews();
 
-        //auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         //Dropdown for the User Type
         UserSelection.setOnItemSelectedListener(this);
@@ -58,14 +56,14 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         UserSelection.setAdapter(myadapter);
         //Dropdown ends
 
-        /*Register.setOnClickListener(new View.OnClickListener() {
+        Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(validate()) {
-                   //Upload data to database
-                   String email = Email.getText().toString().trim();
-                   String pwd = Password.getText().toString().trim();
-                   // auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                if(validate()) {
+                    //Upload data to database
+                    String email = Email.getText().toString().trim();
+                    String pwd = Password.getText().toString().trim();
+                    auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
@@ -76,22 +74,14 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
                             }
                         }
                     });
-               }else if (!passwordMatch){
-                   Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
-               }
-               else{
-                   Toast.makeText(Registration.this,"Please Enter all the details !",Toast.LENGTH_SHORT).show();
-               }
+                }else if (!passwordMatch){
+                    Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Registration.this,"Please Enter all the details !",Toast.LENGTH_SHORT).show();
+                }
             }
-        });*/
-        btnCancel = findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(Registration.this, Login.class);
-                startActivity(intent1);
-            }
-    });
+        });
 
         ExistingUser.setOnClickListener(new View.OnClickListener() {
             @Override
