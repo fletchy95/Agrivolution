@@ -37,7 +37,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     TextView ExistingUser;
     String selected;
 
-    Boolean passwordMatch;
+    Boolean passwordMatch = true;
     private FirebaseAuth auth;
 
     @Override
