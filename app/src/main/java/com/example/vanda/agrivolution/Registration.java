@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import java.lang.reflect.Array;
 
@@ -63,17 +66,31 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
                     //Upload data to database
                     String email = Email.getText().toString().trim();
                     String pwd = Password.getText().toString().trim();
-                    auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Registration.this, Login.class));
-                            }else{
-                                Toast.makeText(Registration.this,"Registration Failed !",Toast.LENGTH_SHORT).show();
+                        auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Registration.this, Login.class));
+                                } else{
+                                    try {
+                                        throw task.getException();
+                                    }
+                                    catch(FirebaseAuthWeakPasswordException weakPassowrdEx){
+                                        Toast.makeText(Registration.this,"Weak Password !",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch(FirebaseAuthInvalidCredentialsException invalidIdEx){
+                                        Toast.makeText(Registration.this,"Invalid Credentials !",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch(FirebaseAuthUserCollisionException duplicateUserEx){
+                                        Toast.makeText(Registration.this,"User Account already Exists !",Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        Toast.makeText(Registration.this,"Registration Failed !",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
-                        }
-                    });
+                        });
+
                 }else if (!passwordMatch){
                     Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
                 }
@@ -119,8 +136,8 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         if (fname.isEmpty() || lname.isEmpty() || Mob.isEmpty() || email.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
             return false;
         }
-        if (!(pwd.equals(cpwd))) {
-            passwordMatch = false;
+        passwordMatch = pwd.equals(cpwd);
+        if (!passwordMatch) {
             return false;
         }
 
