@@ -35,12 +35,12 @@ public class Login extends AppCompatActivity {
         Login = (Button)findViewById(R.id.btnLogin);
         signUp = (TextView)findViewById(R.id.tvRegister);
 
-        //auth = FirebaseAuth.getInstance();
-        //FirebaseUser user = auth.getCurrentUser();
-        /*if(user!= null){
-            finish();
-            Intent intent = new Intent(Login.this, Dashboard.class);
-        }*/
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        if(user!= null){
+            //finish();
+           Intent intent = new Intent(Login.this, Dashboard.class);
+        }
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
