@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Array;
 
@@ -38,7 +40,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     Spinner UserSelection;
     Button Register;
     TextView ExistingUser;
-    String selected;
+    String fname, lname, mob, email, pwd, cpwd,farmNam,farmadd,yearsofexp, spec, selected;
 
     Boolean passwordMatch = true;
     private FirebaseAuth auth;
@@ -70,6 +72,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
+                                    sendUserData();
                                     Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Registration.this, Login.class));
                                 } else{
@@ -126,14 +129,14 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
 
     private Boolean validate(){
 
-        String fname = FirstName.getText().toString();
-        String lname = LastName.getText().toString();
-        String Mob = Mobile.getText().toString();
-        String email = Email.getText().toString();
-        String pwd = Password.getText().toString();
-        String cpwd = ConfirmPassword.getText().toString();
+         fname = FirstName.getText().toString();
+         lname = LastName.getText().toString();
+         mob = Mobile.getText().toString();
+         email = Email.getText().toString();
+         pwd = Password.getText().toString();
+         cpwd = ConfirmPassword.getText().toString();
 
-        if (fname.isEmpty() || lname.isEmpty() || Mob.isEmpty() || email.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
+        if (fname.isEmpty() || lname.isEmpty() || mob.isEmpty() || email.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
             return false;
         }
         passwordMatch = pwd.equals(cpwd);
@@ -142,25 +145,46 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         }
 
         if(selected.equals("Farmer")){
-            String farmName = FarmName.getText().toString();
-            String fAddress = FarmAddress.getText().toString();
-            String yoe = YOE.getText().toString();
-            if(farmName.isEmpty() || fAddress.isEmpty() || yoe.isEmpty()){
+            farmNam = FarmName.getText().toString();
+            farmadd = FarmAddress.getText().toString();
+            yearsofexp = YOE.getText().toString();
+            if(farmNam.isEmpty() || farmadd.isEmpty() || yearsofexp.isEmpty()){
                 return false;
+            }else{
+                spec = "";
+                return true;
             }
         }
         else if(selected.equals("Expert")){
-            String spec = Specialization.getText().toString();
-            String yoe = YOE.getText().toString();
-            if(spec.isEmpty() || yoe.isEmpty()){
+            spec = Specialization.getText().toString();
+            yearsofexp = YOE.getText().toString();
+            if(spec.isEmpty() || yearsofexp.isEmpty()){
                 return false;
+            }
+            else{
+                farmNam = "";
+                farmadd = "";
+                return true;
             }
         }
         else if (selected.equals("Select User Type")){
             return false;
         }
+        else if(selected.equals("Other")){
+            farmNam = "";
+            farmadd = "";
+            spec = "";
+            return true;
+        }
 
         return true;
+    }
+
+    public void sendUserData(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebaseDatabase.getReference(auth.getUid());
+        UserProfile userProfile = new UserProfile(fname, lname, mob, email, farmNam, farmadd, yearsofexp, spec, selected);
+        ref.setValue(userProfile);
     }
 
     @Override
