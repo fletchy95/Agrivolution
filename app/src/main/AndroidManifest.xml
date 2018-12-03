@@ -17,11 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Dashboard" />
-        <activity android:name=".Registration"></activity>
+        <activity android:name=".Registration" />
         <activity android:name=".placeholder" />
         <activity android:name=".Encyclopedia"></activity>
         <activity android:name=".encyclopediaDetail"></activity>
         <activity android:name=".SubmitIssue"></activity>
+        <activity android:name=".Profile"></activity>
     </application>
 
 </manifest>
