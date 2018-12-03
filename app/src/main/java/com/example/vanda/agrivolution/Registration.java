@@ -13,12 +13,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.firebase.auth.FirebaseAuth;
-
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Array;
 
@@ -37,10 +40,10 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     Spinner UserSelection;
     Button Register;
     TextView ExistingUser;
-    String selected;
-    Button btnCancel;
-    Boolean passwordMatch;
-   //private FirebaseAuth auth;
+    String fname, lname, mob, email, pwd, cpwd,farmNam,farmadd,yearsofexp, spec, selected;
+
+    Boolean passwordMatch = true;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,7 +52,7 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_registration);
         setupUIViews();
 
-        //auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         //Dropdown for the User Type
         UserSelection.setOnItemSelectedListener(this);
@@ -58,40 +61,47 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         UserSelection.setAdapter(myadapter);
         //Dropdown ends
 
-        /*Register.setOnClickListener(new View.OnClickListener() {
+        Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(validate()) {
-                   //Upload data to database
-                   String email = Email.getText().toString().trim();
-                   String pwd = Password.getText().toString().trim();
-                   // auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Registration.this, Login.class));
-                            }else{
-                                Toast.makeText(Registration.this,"Registration Failed !",Toast.LENGTH_SHORT).show();
+                if(validate()) {
+                    //Upload data to database
+                    String email = Email.getText().toString().trim();
+                    String pwd = Password.getText().toString().trim();
+                        auth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    sendUserData();
+                                    Toast.makeText(Registration.this,"Registration Successful !",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Registration.this, Login.class));
+                                } else{
+                                    try {
+                                        throw task.getException();
+                                    }
+                                    catch(FirebaseAuthWeakPasswordException weakPassowrdEx){
+                                        Toast.makeText(Registration.this,"Weak Password !",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch(FirebaseAuthInvalidCredentialsException invalidIdEx){
+                                        Toast.makeText(Registration.this,"Invalid Credentials !",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch(FirebaseAuthUserCollisionException duplicateUserEx){
+                                        Toast.makeText(Registration.this,"User Account already Exists !",Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        Toast.makeText(Registration.this,"Registration Failed !",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
-                        }
-                    });
-               }else if (!passwordMatch){
-                   Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
-               }
-               else{
-                   Toast.makeText(Registration.this,"Please Enter all the details !",Toast.LENGTH_SHORT).show();
-               }
+                        });
+
+                }else if (!passwordMatch){
+                    Toast.makeText(Registration.this, "Passwords Don't match !", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(Registration.this,"Please Enter all the details !",Toast.LENGTH_SHORT).show();
+                }
             }
-        });*/
-        btnCancel = findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(Registration.this, Login.class);
-                startActivity(intent1);
-            }
-    });
+        });
 
         ExistingUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,41 +129,62 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
 
     private Boolean validate(){
 
-        String fname = FirstName.getText().toString();
-        String lname = LastName.getText().toString();
-        String Mob = Mobile.getText().toString();
-        String email = Email.getText().toString();
-        String pwd = Password.getText().toString();
-        String cpwd = ConfirmPassword.getText().toString();
+         fname = FirstName.getText().toString();
+         lname = LastName.getText().toString();
+         mob = Mobile.getText().toString();
+         email = Email.getText().toString();
+         pwd = Password.getText().toString();
+         cpwd = ConfirmPassword.getText().toString();
 
-        if (fname.isEmpty() || lname.isEmpty() || Mob.isEmpty() || email.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
+        if (fname.isEmpty() || lname.isEmpty() || mob.isEmpty() || email.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
             return false;
         }
-        if (!(pwd.equals(cpwd))) {
-            passwordMatch = false;
+        passwordMatch = pwd.equals(cpwd);
+        if (!passwordMatch) {
             return false;
         }
 
         if(selected.equals("Farmer")){
-            String farmName = FarmName.getText().toString();
-            String fAddress = FarmAddress.getText().toString();
-            String yoe = YOE.getText().toString();
-            if(farmName.isEmpty() || fAddress.isEmpty() || yoe.isEmpty()){
+            farmNam = FarmName.getText().toString();
+            farmadd = FarmAddress.getText().toString();
+            yearsofexp = YOE.getText().toString();
+            if(farmNam.isEmpty() || farmadd.isEmpty() || yearsofexp.isEmpty()){
                 return false;
+            }else{
+                spec = "";
+                return true;
             }
         }
         else if(selected.equals("Expert")){
-            String spec = Specialization.getText().toString();
-            String yoe = YOE.getText().toString();
-            if(spec.isEmpty() || yoe.isEmpty()){
+            spec = Specialization.getText().toString();
+            yearsofexp = YOE.getText().toString();
+            if(spec.isEmpty() || yearsofexp.isEmpty()){
                 return false;
+            }
+            else{
+                farmNam = "";
+                farmadd = "";
+                return true;
             }
         }
         else if (selected.equals("Select User Type")){
             return false;
         }
+        else if(selected.equals("Other")){
+            farmNam = "";
+            farmadd = "";
+            spec = "";
+            return true;
+        }
 
         return true;
+    }
+
+    public void sendUserData(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebaseDatabase.getReference(auth.getUid());
+        UserProfile userProfile = new UserProfile(fname, lname, mob, email, farmNam, farmadd, yearsofexp, spec, selected);
+        ref.setValue(userProfile);
     }
 
     @Override
