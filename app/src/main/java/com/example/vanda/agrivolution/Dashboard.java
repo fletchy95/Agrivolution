@@ -85,7 +85,7 @@ public class Dashboard extends AppCompatActivity {
         btnSubmitIssue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Dashboard.this, placeholder.class));
+                startActivity(new Intent(Dashboard.this, SubmitIssue.class));
             }
         });
         btnShop.setOnClickListener(new View.OnClickListener() {
