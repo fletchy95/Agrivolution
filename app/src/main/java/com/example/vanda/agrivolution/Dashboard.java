@@ -11,6 +11,8 @@ import android.widget.Toast;
 import android.widget.ImageButton;
 import android.view.Menu;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Dashboard extends AppCompatActivity {
 
     ImageButton btnSubmitIssue;
@@ -18,11 +20,17 @@ public class Dashboard extends AppCompatActivity {
     ImageButton btnShop;
     ImageButton btnHeatMap;
     ImageButton btnEncyclopedia;
+
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         ImageButton btnAccount = findViewById(R.id.btnAccount);
         final PopupMenu dropDownAccount = new PopupMenu(getApplicationContext(), btnAccount);
         final Menu menu = dropDownAccount.getMenu();
@@ -41,6 +49,8 @@ public class Dashboard extends AppCompatActivity {
                         startActivity(new Intent(Dashboard.this, placeholder.class));
                         return true;
                     case 2:
+                        firebaseAuth.signOut();
+                        finish();
                         Intent intent2 = new Intent(Dashboard.this, Login.class);
                         startActivity(intent2);
                         Toast.makeText(Dashboard.this," Logged out Successfully !", Toast.LENGTH_SHORT).show();
@@ -75,7 +85,7 @@ public class Dashboard extends AppCompatActivity {
         btnSubmitIssue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Dashboard.this, placeholder.class));
+                startActivity(new Intent(Dashboard.this, SubmitIssue.class));
             }
         });
         btnShop.setOnClickListener(new View.OnClickListener() {
