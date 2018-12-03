@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 import android.view.Menu;
@@ -43,7 +42,7 @@ public class Dashboard extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case 0:
-                        startActivity(new Intent(Dashboard.this , placeholder.class));
+                        startActivity(new Intent(Dashboard.this , Profile.class));
                         return true;
                     case 1:
                         startActivity(new Intent(Dashboard.this, placeholder.class));
