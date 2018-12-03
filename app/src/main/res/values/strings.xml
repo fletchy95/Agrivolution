@@ -16,6 +16,16 @@
     <string name="home" />
     <string name="library" />
     <string name="comminity" />
+    <string name="preventive_measure">Preventive Measure</string>
+    <string name="biological_control">Biological Control</string>
+    <string name="chemical_control">Chemical Control</string>
+    <string name="attachment">Attachment</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="trigger">Trigger</string>
+    <string name="description">Description</string>
+    <string name="hosts">Hosts</string>
+    <string name="pest1">Pest1</string>
+    <string name="type">Type</string>
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>
