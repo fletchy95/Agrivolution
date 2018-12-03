@@ -21,6 +21,7 @@
         <activity android:name=".placeholder" />
         <activity android:name=".Encyclopedia"></activity>
         <activity android:name=".encyclopediaDetail"></activity>
+        <activity android:name=".SubmitIssue"></activity>
     </application>
 
 </manifest>

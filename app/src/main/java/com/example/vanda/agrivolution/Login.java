@@ -1,7 +1,6 @@
 package com.example.vanda.agrivolution;
 
 import android.content.Intent;
-import android.icu.text.IDNA;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
