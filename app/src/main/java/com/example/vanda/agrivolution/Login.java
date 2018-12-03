@@ -62,23 +62,29 @@ public class Login extends AppCompatActivity {
 
     }
     private void validate(String userEmail, String userPassword){
-        auth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(Login.this,"Logged in Successfully !",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Login.this, Dashboard.class));
-                }else{
-                    Toast.makeText(Login.this,"Invalid Credentials !",Toast.LENGTH_SHORT).show();
-                    counter--;
+        if(!(userEmail.isEmpty()) || !(userPassword.isEmpty())){
+            auth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(Login.this,"Logged in Successfully !",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Login.this, Dashboard.class));
+                    }else{
+                        Toast.makeText(Login.this,"Invalid Credentials !",Toast.LENGTH_SHORT).show();
+                        counter--;
 
-                    if (counter == 0){
-                        Login.setEnabled(false);
+                        if (counter == 0){
+                            Login.setEnabled(false);
+                        }
+
                     }
-
                 }
-            }
-        });
+            });
+        }
+        else{
+            Toast.makeText(Login.this,"Enter all the details !",Toast.LENGTH_SHORT).show();
+        }
+
 //        if((userEmail.equals("admin@fairfield.edu")) && (userPassword.equals("1234"))){
 //            Intent intent = new Intent(Login.this, Dashboard.class);
 //            startActivity(intent);
