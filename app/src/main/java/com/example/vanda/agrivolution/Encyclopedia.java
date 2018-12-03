@@ -18,7 +18,7 @@ public class Encyclopedia extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.encyclopedia);
+        setContentView(R.layout.activity_encyclopedia);
         btnPest1 = findViewById(R.id.btnPest1);
         btnPest2 = findViewById(R.id.btnPest2);
         btnPest3 = findViewById(R.id.btnPest3);
