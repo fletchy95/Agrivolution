@@ -22,71 +22,78 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btnGetImg"
+            android:id="@+id/btnPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload Image" />
+            android:text="@string/upload_image" />
+
+        <ImageView
+            android:id="@+id/ImgUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="?attr/actionBarDivider"
+            android:contentDescription="@string/uploaded_image_from_camera"/>
 
         <EditText
-            android:id="@+id/etFname2"
+            android:id="@+id/sub_Disc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Description"
+            android:hint="@string/description"
             android:inputType="textPersonName"
             android:singleLine="false" />
 
         <EditText
-            android:id="@+id/etFname4"
+            android:id="@+id/sub_farmName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Farm Name"
+            android:hint="@string/farm_name"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etFname3"
+            android:id="@+id/sub_farmAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Farm Address"
+            android:hint="@string/farm_address"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etFname5"
+            android:id="@+id/sub_dmgEst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Damage Estimation"
+            android:hint="@string/damage_estimation"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etFname6"
+            android:id="@+id/sub_hypothesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Hypothesis"
+            android:hint="@string/hypothesis"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etFname7"
+            android:id="@+id/sub_addInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Additional Information"
+            android:hint="@string/additional_information"
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnSubmitIssue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Issue" />
+            android:text="@string/submit_issue" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btnCancelTicket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel Ticket" />
+            android:text="@string/cancel_ticket" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

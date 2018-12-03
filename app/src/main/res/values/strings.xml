@@ -22,10 +22,19 @@
     <string name="attachment">Attachment</string>
     <string name="symptoms">Symptoms</string>
     <string name="trigger">Trigger</string>
-    <string name="description">Description</string>
     <string name="hosts">Hosts</string>
     <string name="pest1">Pest1</string>
     <string name="type">Type</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="description">Description</string>
+    <string name="uploaded_image_from_camera">Uploaded Image from Camera</string>
+    <string name="submit_issue">Submit Issue</string>
+    <string name="cancel_ticket">Cancel Ticket</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="hypothesis">Hypothesis</string>
+    <string name="damage_estimation">Damage Estimation</string>
+    <string name="farm_address">Farm Address</string>
+    <string name="farm_name">Farm Name</string>
     <string-array name="type">
         <item>Select User Type</item>
         <item>Farmer</item>
