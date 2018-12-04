@@ -62,35 +62,35 @@ public class Profile extends AppCompatActivity {
                     UserProfile userprofObj = dataSnapshot.getValue(UserProfile.class);
                     profFirstName.setText(userprofObj.getFirstName());
                     profLastName.setText(userprofObj.getLastName());
-                    profMobile.setText(userprofObj.getMobile());
-                    profEmail.setText(userprofObj.getEmail());
-                    profUserType.setText(userprofObj.getUserType());
-                    profFarmName.setText(userprofObj.getFarmName());
-                    profFarmAdd.setText(userprofObj.getFarmAddress());
-                    profYearsOfExp.setText(userprofObj.getYearsOfExperience());
-                    profSpecialization.setText(userprofObj.getSpecialization());
+                    profMobile.setText("Mobile : "+userprofObj.getMobile());
+                    profEmail.setText("Email : "+userprofObj.getEmail());
+                    profUserType.setText("User Type : "+userprofObj.getUserType());
+                    profFarmName.setText("Farm Name : "+userprofObj.getFarmName());
+                    profFarmAdd.setText("Farm Address : "+userprofObj.getFarmAddress());
+                    profYearsOfExp.setText("Years Of Experience : "+userprofObj.getYearsOfExperience());
+                    profSpecialization.setText("Specialization : "+userprofObj.getSpecialization());
 
-//                if(profUserType.setText(userprofObj.getUserType()).equals("Farmer"))
-//                {
-//                    profSpecialization.setVisibility(View.GONE);
-//                    profFarmName.setVisibility(View.VISIBLE);
-//                    profFarmAdd.setVisibility(View.VISIBLE);
-//                    profYearsOfExp.setVisibility(View.VISIBLE);
-//                }
-//                else if(profUserType.equals("Expert"))
-//                {
-//                    profFarmName.setVisibility(View.GONE);
-//                    profFarmAdd.setVisibility(View.GONE);
-//                    profSpecialization.setVisibility(View.VISIBLE);
-//                    profYearsOfExp.setVisibility(View.VISIBLE);
-//                }
-//                else
-//                {
-//                    profFarmName.setVisibility(View.GONE);
-//                    profFarmAdd.setVisibility(View.GONE);
-//                    profSpecialization.setVisibility(View.GONE);
-//                    profYearsOfExp.setVisibility(View.GONE);
-//                }
+                if(profUserType.equals("Farmer"))
+                {
+                    profSpecialization.setVisibility(View.GONE);
+                    profFarmName.setVisibility(View.VISIBLE);
+                    profFarmAdd.setVisibility(View.VISIBLE);
+                    profYearsOfExp.setVisibility(View.VISIBLE);
+                }
+                else if(profUserType.equals("Expert"))
+                {
+                    profFarmName.setVisibility(View.GONE);
+                    profFarmAdd.setVisibility(View.GONE);
+                    profSpecialization.setVisibility(View.VISIBLE);
+                    profYearsOfExp.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    profFarmName.setVisibility(View.GONE);
+                    profFarmAdd.setVisibility(View.GONE);
+                    profSpecialization.setVisibility(View.GONE);
+                    profYearsOfExp.setVisibility(View.GONE);
+                }
             }
 
             @Override
