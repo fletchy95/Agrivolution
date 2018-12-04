@@ -112,19 +112,19 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
         });
     }
     private void setupUIViews(){
-        FirstName = (EditText)findViewById(R.id.etFname);
-        LastName = (EditText)findViewById(R.id.etLastName);
-        Mobile = (EditText)findViewById(R.id.etMob);
-        Email = (EditText)findViewById(R.id.etEmail);
-        Password = (EditText)findViewById(R.id.etPassword);
-        ConfirmPassword = (EditText)findViewById(R.id.etCpassword);
+        FirstName = findViewById(R.id.etFname);
+        LastName = findViewById(R.id.etLastName);
+        Mobile = findViewById(R.id.etMob);
+        Email = findViewById(R.id.etEmail);
+        Password = findViewById(R.id.etPassword);
+        ConfirmPassword = findViewById(R.id.etCpassword);
         FarmName = findViewById(R.id.farmName);
         FarmAddress = findViewById(R.id.farmAddress);
         YOE = findViewById(R.id.yoe);
         Specialization = findViewById(R.id.specialization);
-        UserSelection = (Spinner) findViewById(R.id.spinnerUserType);
-        Register = (Button)findViewById(R.id.btnRegister);
-        ExistingUser = (TextView)findViewById(R.id.tvExistingUser);
+        UserSelection = findViewById(R.id.spinnerUserType);
+        Register = findViewById(R.id.btnRegister);
+        ExistingUser = findViewById(R.id.tvExistingUser);
     }
 
     private Boolean validate(){
