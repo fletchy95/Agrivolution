@@ -45,7 +45,7 @@ public class Dashboard extends AppCompatActivity {
                         startActivity(new Intent(Dashboard.this , Profile.class));
                         return true;
                     case 1:
-                        startActivity(new Intent(Dashboard.this, placeholder.class));
+                        startActivity(new Intent(Dashboard.this, ChangePassword.class));
                         return true;
                     case 2:
                         firebaseAuth.signOut();
