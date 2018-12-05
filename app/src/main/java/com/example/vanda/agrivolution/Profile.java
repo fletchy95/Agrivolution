@@ -1,5 +1,6 @@
 package com.example.vanda.agrivolution;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class Profile extends AppCompatActivity {
         profSpecialization = findViewById(R.id.tvSpec);
         profUpdate =findViewById(R.id.btnEdit);
 
+    //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         firebaseauthObj = FirebaseAuth.getInstance();
         firebasedatabaseObj = FirebaseDatabase.getInstance();
 
@@ -69,15 +71,15 @@ public class Profile extends AppCompatActivity {
                     profFarmAdd.setText("Farm Address : "+userprofObj.getFarmAddress());
                     profYearsOfExp.setText("Years Of Experience : "+userprofObj.getYearsOfExperience());
                     profSpecialization.setText("Specialization : "+userprofObj.getSpecialization());
-
-                if(profUserType.equals("Farmer"))
+                    String userType =userprofObj.getUserType();
+                if(userType.equals("Farmer"))
                 {
                     profSpecialization.setVisibility(View.GONE);
                     profFarmName.setVisibility(View.VISIBLE);
                     profFarmAdd.setVisibility(View.VISIBLE);
                     profYearsOfExp.setVisibility(View.VISIBLE);
                 }
-                else if(profUserType.equals("Expert"))
+                else if(userType.equals("Expert"))
                 {
                     profFarmName.setVisibility(View.GONE);
                     profFarmAdd.setVisibility(View.GONE);
@@ -96,6 +98,13 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Profile.this, databaseError.getCode(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        profUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this, UpdateProfile.class));
             }
         });
     }
