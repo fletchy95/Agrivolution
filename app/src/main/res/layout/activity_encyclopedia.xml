@@ -237,7 +237,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="73dp"
         android:layout_marginRight="73dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="1dp"
         android:text="Back to Dashboard"
         app:layout_constraintBottom_toTopOf="@+id/TextViewComminity"
         app:layout_constraintEnd_toStartOf="@+id/TextViewLibrary"
