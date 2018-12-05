@@ -25,6 +25,7 @@ public class ChangePassword extends AppCompatActivity {
 
         newPassword = findViewById(R.id.etNewPassword);
         UpdatePassword = findViewById(R.id.btnChangePwd);
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firebaseUserObj = FirebaseAuth.getInstance().getCurrentUser();
         UpdatePassword.setOnClickListener(new View.OnClickListener() {
