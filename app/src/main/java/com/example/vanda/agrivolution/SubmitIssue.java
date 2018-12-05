@@ -109,13 +109,6 @@ public class SubmitIssue extends AppCompatActivity
         String farmAddress = sub_farmAddress.getText().toString();
         String hypothesis = sub_hypothesis.getText().toString();
         String addInfo = sub_addInfo.getText().toString();
-        if(desc.equals("") || farmName.equals("") || farmAddress.equals("") || hypothesis.equals("") || addInfo.equals(""))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
     }
 }

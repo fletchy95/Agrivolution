@@ -81,6 +81,7 @@
         android:text="@string/symptoms"
         app:layout_constraintBottom_toTopOf="@+id/textViewTrigger"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
@@ -192,5 +193,22 @@
         app:layout_constraintStart_toEndOf="@+id/textViewAttachment"
         app:layout_constraintTop_toBottomOf="@+id/textViewChemicalControl"
         app:srcCompat="@drawable/ic_attach" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="331dp"
+        android:layout_marginRight="331dp"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/textViewType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"
+        app:layout_constraintVertical_bias="0.684" />
 
 </android.support.constraint.ConstraintLayout>
