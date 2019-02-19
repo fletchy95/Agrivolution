@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 public class SubmitIssue extends AppCompatActivity
 {
     Button btnPicture;
@@ -24,9 +27,11 @@ public class SubmitIssue extends AppCompatActivity
     EditText sub_hypothesis;
     EditText sub_addInfo;
     Button but;
+    static ArrayList issueList = new ArrayList();
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
+
     @TargetApi(23)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class SubmitIssue extends AppCompatActivity
             public void onClick(View v) {
                 if(validate())
                 {
+
                     Toast.makeText(SubmitIssue.this, "Issue Submitted!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SubmitIssue.this, Dashboard.class));
                 }
@@ -99,6 +105,18 @@ public class SubmitIssue extends AppCompatActivity
             imgUpload.setImageBitmap(photo);
         }
     }
+
+    private void addToList()
+    {
+        String list[] = new String[5];
+        list[0] = sub_farmName.toString();
+        list[1] = sub_farmAddress.toString();
+        list[2] = sub_addInfo.toString();
+        list[3] = sub_hypothesis.toString();
+        list[4] = sub_desc.toString();
+        issueList.add(list);
+    }
+
     private boolean validate()
     {
         sub_farmAddress = findViewById(R.id.sub_farmAddress);
@@ -110,5 +128,9 @@ public class SubmitIssue extends AppCompatActivity
         String hypothesis = sub_hypothesis.getText().toString();
         String addInfo = sub_addInfo.getText().toString();
         return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
+    }
+    public static ArrayList sendList()
+    {
+        return issueList;
     }
 }

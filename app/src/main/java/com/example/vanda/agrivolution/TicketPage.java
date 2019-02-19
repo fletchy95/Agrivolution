@@ -9,18 +9,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
-public class TicketPage extends ListActivity {
+
+public class TicketPage extends ListActivity
+{
+    ArrayList issueList;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-
+        issueList = new ArrayList();
+        getList();
         // storing string resources into Array
         String[] numbers = {"one","two","three","four"};
         // here you store the array of string you got from the database
 
         // Binding Array to ListAdapter
-        this.setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_ticket_page, R.id.listView, numbers));
+        this.setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_ticket_page, R.id.listView));
         // refer the ArrayAdapter Document in developer.android.com
         ListView lv = getListView();
 
@@ -38,5 +44,9 @@ public class TicketPage extends ListActivity {
                 startActivity(i);
             }
         });
+    }
+    private void getList()
+    {
+        issueList = SubmitIssue.sendList();
     }
 }
