@@ -181,10 +181,10 @@ public class Registration extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void sendUserData(){
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebaseDatabase.getReference(auth.getUid());
+        FirebaseDatabase firebaseDatabaseObj = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebaseDatabaseObj.getReference();
         UserProfile userProfileObj = new UserProfile(fname, lname, mob, email, farmNam, farmadd, yearsofexp, spec, selected);
-        ref.setValue(userProfileObj);
+        ref.child("User").child(auth.getUid()).setValue(userProfileObj);
     }
 
     @Override
