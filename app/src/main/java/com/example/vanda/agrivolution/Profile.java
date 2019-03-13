@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,8 @@ public class Profile extends AppCompatActivity {
     private TextView profFarmAdd;
     private TextView profYearsOfExp;
     private TextView profSpecialization;
+
+    private String userID;
 
     private Button profUpdate;
 
@@ -56,42 +59,56 @@ public class Profile extends AppCompatActivity {
     //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         firebaseauthObj = FirebaseAuth.getInstance();
         firebasedatabaseObj = FirebaseDatabase.getInstance();
-
-        DatabaseReference databaserefObj = firebasedatabaseObj.getReference(firebaseauthObj.getUid());
-        databaserefObj.addValueEventListener(new ValueEventListener() {
+        DatabaseReference databaseRefObj = firebasedatabaseObj.getReference();
+        FirebaseUser user = firebaseauthObj.getCurrentUser();
+        userID = user.getUid();
+       // DatabaseReference databaserefObj = firebasedatabaseObj.getReference(firebaseauthObj.getUid());
+        databaseRefObj.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    UserProfile userprofObj = dataSnapshot.getValue(UserProfile.class);
-                    profFirstName.setText(userprofObj.getFirstName());
-                    profLastName.setText(userprofObj.getLastName());
-                    profMobile.setText("Mobile : "+userprofObj.getMobile());
-                    profEmail.setText("Email : "+userprofObj.getEmail());
-                    profUserType.setText("User Type : "+userprofObj.getUserType());
-                    profFarmName.setText("Farm Name : "+userprofObj.getFarmName());
-                    profFarmAdd.setText("Farm Address : "+userprofObj.getFarmAddress());
-                    profYearsOfExp.setText("Years Of Experience : "+userprofObj.getYearsOfExperience());
-                    profSpecialization.setText("Specialization : "+userprofObj.getSpecialization());
-                    String userType =userprofObj.getUserType();
-                if(userType.equals("Farmer"))
-                {
-                    profSpecialization.setVisibility(View.GONE);
-                    profFarmName.setVisibility(View.VISIBLE);
-                    profFarmAdd.setVisibility(View.VISIBLE);
-                    profYearsOfExp.setVisibility(View.VISIBLE);
-                }
-                else if(userType.equals("Expert"))
-                {
-                    profFarmName.setVisibility(View.GONE);
-                    profFarmAdd.setVisibility(View.GONE);
-                    profSpecialization.setVisibility(View.VISIBLE);
-                    profYearsOfExp.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    profFarmName.setVisibility(View.GONE);
-                    profFarmAdd.setVisibility(View.GONE);
-                    profSpecialization.setVisibility(View.GONE);
-                    profYearsOfExp.setVisibility(View.GONE);
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    UserProfile userProf = new UserProfile();
+                    userProf.setFirstName(ds.child(userID).getValue(UserProfile.class).getFirstName());
+                    userProf.setLastName(ds.child(userID).getValue(UserProfile.class).getLastName());
+                    userProf.setMobile(ds.child(userID).getValue(UserProfile.class).getMobile());
+                    userProf.setEmail(ds.child(userID).getValue(UserProfile.class).getEmail());
+                    userProf.setUserType(ds.child(userID).getValue(UserProfile.class).getUserType());
+                    userProf.setFarmName(ds.child(userID).getValue(UserProfile.class).getFarmName());
+                    userProf.setFarmAddress(ds.child(userID).getValue(UserProfile.class).getFarmAddress());
+                    userProf.setYearsOfExperience(ds.child(userID).getValue(UserProfile.class).getYearsOfExperience());
+                    userProf.setSpecialization(ds.child(userID).getValue(UserProfile.class).getSpecialization());
+
+                    profFirstName.setText("First Name :" +userProf.getFirstName());
+                    profLastName.setText("Last Name :"+ userProf.getLastName());
+                    profMobile.setText("Mobile : "+userProf.getMobile());
+                    profEmail.setText("Email : "+userProf.getEmail());
+                    profUserType.setText("User Type : "+userProf.getUserType());
+                    profFarmName.setText("Farm Name : "+userProf.getFarmName());
+                    profFarmAdd.setText("Farm Address : "+userProf.getFarmAddress());
+                    profYearsOfExp.setText("Years Of Experience : "+userProf.getYearsOfExperience());
+                    profSpecialization.setText("Specialization : "+userProf.getSpecialization());
+                    String userType =userProf.getUserType();
+                    if(userType.equals("Farmer"))
+                    {
+                        profSpecialization.setVisibility(View.GONE);
+                        profFarmName.setVisibility(View.VISIBLE);
+                        profFarmAdd.setVisibility(View.VISIBLE);
+                        profYearsOfExp.setVisibility(View.VISIBLE);
+                    }
+                    else if(userType.equals("Expert"))
+                    {
+                        profFarmName.setVisibility(View.GONE);
+                        profFarmAdd.setVisibility(View.GONE);
+                        profSpecialization.setVisibility(View.VISIBLE);
+                        profYearsOfExp.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        profFarmName.setVisibility(View.GONE);
+                        profFarmAdd.setVisibility(View.GONE);
+                        profSpecialization.setVisibility(View.GONE);
+                        profYearsOfExp.setVisibility(View.GONE);
+                    }
                 }
             }
 

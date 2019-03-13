@@ -1,6 +1,7 @@
 package com.example.vanda.agrivolution;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ public class Dashboard extends AppCompatActivity {
     ImageButton btnShop;
     ImageButton btnHeatMap;
     ImageButton btnEncyclopedia;
+    ImageButton btnTicketPage;
 
     private FirebaseAuth firebaseAuth;
 
@@ -68,6 +70,7 @@ public class Dashboard extends AppCompatActivity {
         btnShop = findViewById(R.id.btnShop);
         btnHeatMap = findViewById(R.id.btnHeatMap);
         btnEncyclopedia = findViewById(R.id.btnEncyclopedia);
+        btnTicketPage = findViewById(R.id.btnTicketPage);
         // Will setup button Listeners once the pages for these have been created.
         btnEncyclopedia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,5 +102,10 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(new Intent(Dashboard.this, placeholder.class));
             }
         });
-    }
+        btnTicketPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, TicketPage.class));
+            }
+        });    }
 }
