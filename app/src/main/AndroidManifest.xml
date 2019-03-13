@@ -25,6 +25,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".TicketPage"/>
     </application>
 
 </manifest>
