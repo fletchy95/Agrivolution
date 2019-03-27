@@ -12,14 +12,14 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/imageSelect"
             android:layout_width="407dp"
             android:layout_height="217dp"
             android:contentDescription="TODO"
             app:srcCompat="@mipmap/add_btn" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/nameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -27,7 +27,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/typeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -35,7 +35,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/hostField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -43,7 +43,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/descField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -51,7 +51,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/symptomsField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/triggerField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -67,7 +67,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/prevMeasureField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/bioField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -83,7 +83,7 @@
             android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/editText12"
+            android:id="@+id/chemField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -91,7 +91,7 @@
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/submitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit" />

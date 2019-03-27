@@ -64,23 +64,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="11dp"
         android:background="@drawable/textbutton_background"
-        app:layout_constraintBottom_toTopOf="@+id/ButtonAllPathogens"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/ButtonAllPathogens"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/textbutton_background"
-        android:text="all_pathogens"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonAdd"
-        app:layout_constraintEnd_toStartOf="@+id/ButtonName"
-        app:layout_constraintStart_toStartOf="@+id/searchView"
-        app:layout_constraintTop_toTopOf="@+id/buttonAdd" />
 
     <Button
         android:id="@+id/ButtonName"
@@ -92,8 +79,10 @@
         android:text="name"
         app:layout_constraintBottom_toBottomOf="@+id/btnPest2"
         app:layout_constraintEnd_toEndOf="@+id/ButtonName2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/ButtonName2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/ButtonName2"
@@ -140,9 +129,9 @@
         android:id="@+id/buttonAdd"
         android:layout_width="60dp"
         android:layout_height="35dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:background="@drawable/textbutton_background"
         android:text="add+"
         app:layout_constraintEnd_toEndOf="parent"
