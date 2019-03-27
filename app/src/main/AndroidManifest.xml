@@ -24,8 +24,8 @@
         <activity android:name=".SubmitIssue" />
         <activity android:name=".Profile" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".ChangePassword"></activity>
-        <activity android:name=".TicketPage"/>
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".addEncyclopediaData"></activity>
     </application>
 
 </manifest>
