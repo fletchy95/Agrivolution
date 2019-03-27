@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class Encyclopedia extends AppCompatActivity
 {
+    private Button Add;
     ImageButton btnPest1;
     ImageButton btnPest2;
     ImageButton btnPest3;
@@ -19,11 +20,19 @@ public class Encyclopedia extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia);
+        Add = findViewById(R.id.buttonAdd);
         btnPest1 = findViewById(R.id.btnPest1);
         btnPest2 = findViewById(R.id.btnPest2);
         btnPest3 = findViewById(R.id.btnPest3);
         btnPest4 = findViewById(R.id.btnPest4);
         btnBack = findViewById(R.id.btnBack);
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Encyclopedia.this, addEncyclopediaData.class);
+                startActivity(intent);
+            }
+        });
         btnPest1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
