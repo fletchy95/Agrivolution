@@ -22,7 +22,6 @@ public class TicketPage extends ListActivity
         issueList = new ArrayList();
         getList();
         // storing string resources into Array
-        String[] numbers = {"one","two","three","four"};
         // here you store the array of string you got from the database
 
         // Binding Array to ListAdapter
@@ -38,10 +37,10 @@ public class TicketPage extends ListActivity
                 String num = ((TextView) view).getText().toString();
 
                 // Launching new Activity on selecting single List Item
-                Intent i = new Intent(getApplicationContext(), SingleListItem.class);
+                //Intent i = new Intent(getApplicationContext(), SingleListItem.class);
                 // sending data to new activity
-                i.putExtra("number", num);
-                startActivity(i);
+                //i.putExtra("number", num);
+                //startActivity(i);
             }
         });
     }

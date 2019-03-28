@@ -24,9 +24,8 @@ public class SubmitIssue extends AppCompatActivity
     EditText sub_desc;
     EditText sub_farmName;
     EditText sub_farmAddress;
-    EditText sub_hypothesis;
+    EditText locationDetails;
     EditText sub_addInfo;
-    Button but;
     static ArrayList issueList = new ArrayList();
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
@@ -36,16 +35,15 @@ public class SubmitIssue extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit_issue);
-        btnSubmitIssue = findViewById(R.id.btnSubmitIssue);
-        btnCancelTicket = findViewById(R.id.btnCancelTicket);
+        setContentView(R.layout.activity_submit_ticket);
+        btnSubmitIssue = findViewById(R.id.btbSubmitTicket);
+        btnCancelTicket = findViewById(R.id.btnCancel);
         imgUpload = this.findViewById(R.id.ImgUpload);
         btnPicture = this.findViewById(R.id.btnPicture);
         sub_desc = findViewById(R.id.sub_Disc);
-        sub_farmName = findViewById(R.id.sub_farmName);
-        sub_farmAddress = findViewById(R.id.sub_farmAddress);
-        sub_hypothesis = findViewById(R.id.sub_hypothesis);
-        sub_addInfo = findViewById(R.id.sub_addInfo);
+        sub_farmName = findViewById(R.id.farmName);
+        sub_farmAddress = findViewById(R.id.farmAddress);
+        this.locationDetails = findViewById(R.id.locationDetail);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,20 +110,19 @@ public class SubmitIssue extends AppCompatActivity
         list[0] = sub_farmName.toString();
         list[1] = sub_farmAddress.toString();
         list[2] = sub_addInfo.toString();
-        list[3] = sub_hypothesis.toString();
+        list[3] = locationDetails.toString();
         list[4] = sub_desc.toString();
         issueList.add(list);
     }
 
     private boolean validate()
     {
-        sub_farmAddress = findViewById(R.id.sub_farmAddress);
-        sub_hypothesis = findViewById(R.id.sub_hypothesis);
-        sub_addInfo = findViewById(R.id.sub_addInfo);
+        sub_farmAddress = findViewById(R.id.farmAddress);
+        locationDetails = findViewById(R.id.locationDetail);
         String desc = sub_desc.getText().toString();
         String farmName = sub_farmName.getText().toString();
         String farmAddress = sub_farmAddress.getText().toString();
-        String hypothesis = sub_hypothesis.getText().toString();
+        String hypothesis = locationDetails.getText().toString();
         String addInfo = sub_addInfo.getText().toString();
         return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
     }
