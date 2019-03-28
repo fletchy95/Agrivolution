@@ -18,32 +18,22 @@ class MySqlUsage
         querySQL("TRUNCATE TABLE forecast;");
         querySQL("TRUNCATE TABLE currentForecast");
     }
-    // TODO updateCurrentSQL needs updating
-    static void updateCurrentSQL(String[] data) throws SQLException
+    static void submitTicket(String[] data) throws SQLException
     {
         con = DriverManager.getConnection(url, user, password);
-        querySQL("INSERT INTO currentForecast " +
-                "(temp, temp_min, temp_max, pressure, humidity, windSpeed) " +
-                "VALUES (" +
-                data[0] + ", "+data[1] + ", "+data[2] + ", "+data[3] + ", "+data[4] + ", "+data[5] + ");"
-        );
-    }
-    // TODO updateSQL needs updating
-    static void updateSQL(String[][] data, int address_ID) throws SQLException
-    {
-        con = DriverManager.getConnection(url, user, password);
-        int columnCnt = 0;
         for (int i = 0; i < 1; i++) {
-            querySQL("INSERT INTO forecast " +
-                    "(address_ID, forecast_time, forecast_time_std, temp, temp_min, temp_max, pressure, humidity, " +
-                    "windSpeed) VALUES (" +
-                    address_ID + ", " + "from_unixtime(" + data[0][i] + "), '" + data[1][i] + "', " + data[2][i] + ", " + data[3][i]
-                    + ", " + data[4][i] + ", " + data[5][i] + ", " + data[6][i] + ", " + data[7][i] + ");"
+            querySQL("INSERT INTO ticket " +
+                    "(farmName, farmAddress, locationDetails, ticketTitle, date, email, optionalContact, description) VALUES (" +
+                    data[0] + ", " + data[1] + "', " + data[2] + ", " + data[3] + ", " + "from_unixtime(" + data[4] + ")" + data[5] + ", " + data[6] + ", " + data[7] + ");"
             );
         }
 
     }
+    // TODO create a get ticket method.  This should load already existing tickets in to ticket page.
+    private static void getTickets()
+    {
 
+    }
     private static void querySQL (String query) throws SQLException
     // Allows for Inserts and Deletes from the database.
     {
