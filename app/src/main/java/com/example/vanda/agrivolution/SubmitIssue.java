@@ -13,19 +13,22 @@ import android.widget.ImageView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
-// TODO Renovate SubmitIssue
 public class SubmitIssue extends AppCompatActivity
 {
     Button btnPicture;
     Button btnSubmitIssue;
     Button btnCancelTicket;
-    EditText sub_desc;
-    EditText sub_farmName;
-    EditText sub_farmAddress;
-    EditText locationDetails;
-    EditText sub_addInfo;
-    
+    EditText description;
+    EditText farmName;
+    EditText farmAddress;
+    EditText locationDetail;
+    EditText ticketTitle;
+    EditText optionalContact;
+    EditText date;
+    EditText email;
     static ArrayList issueList = new ArrayList();
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
@@ -33,7 +36,6 @@ public class SubmitIssue extends AppCompatActivity
 
     @TargetApi(23)
     @Override
-    // TODO Update onCreate
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_ticket);
@@ -41,10 +43,14 @@ public class SubmitIssue extends AppCompatActivity
         btnCancelTicket = findViewById(R.id.btnCancel);
         imgUpload = this.findViewById(R.id.ImgUpload);
         btnPicture = this.findViewById(R.id.btnPicture);
-        sub_desc = findViewById(R.id.sub_Disc);
-        sub_farmName = findViewById(R.id.farmName);
-        sub_farmAddress = findViewById(R.id.farmAddress);
-        this.locationDetails = findViewById(R.id.locationDetail);
+        description = findViewById(R.id.description);
+        farmName = findViewById(R.id.farmName);
+        farmAddress = findViewById(R.id.farmAddress);
+        ticketTitle = findViewById(R.id.ticketTitle);
+        optionalContact = findViewById(R.id.OptionalContact);
+        date = findViewById(R.id.date);
+        email = findViewById(R.id.email);
+        this.locationDetail = findViewById(R.id.locationDetail);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,27 +111,22 @@ public class SubmitIssue extends AppCompatActivity
             imgUpload.setImageBitmap(photo);
         }
     }
-    // TODO addToList needs to be modified to put ticket data in a array and send to database
-    private void addToList()
+    private void addToList() throws SQLException
     {
-        String ticket[] = new String[5];
-        ticket[0] = sub_farmName.toString();
-        ticket[1] = sub_farmAddress.toString();
-        ticket[2] = locationDetails.toString();
-        ticket[3] = .toString();
-        ticket[4] = sub_desc.toString();
-
+        String ticket[] = new String[8];
+        ticket[0] = farmName.toString();
+        ticket[1] = farmAddress.toString();
+        ticket[2] = locationDetail.toString();
+        ticket[3] = ticketTitle.toString();
+        ticket[4] = date.toString();
+        ticket[5] = email.toString();
+        ticket[6] = optionalContact.toString();
+        ticket[7] = description.toString();
+        MySqlUsage.submitTicket(ticket);
     }
-    // TODO validate may need updates, but it is a low priority
+    // TODO validate must be implemented, low Priority, will complete later. For now it will auto accept.
     private boolean validate()
     {
-        sub_farmAddress = findViewById(R.id.farmAddress);
-        locationDetails = findViewById(R.id.locationDetail);
-        String desc = sub_desc.getText().toString();
-        String farmName = sub_farmName.getText().toString();
-        String farmAddress = sub_farmAddress.getText().toString();
-        String hypothesis = locationDetails.getText().toString();
-        String addInfo = sub_addInfo.getText().toString();
-        return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
+        return true;
     }
 }

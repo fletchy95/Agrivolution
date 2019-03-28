@@ -18,7 +18,7 @@ class MySqlUsage
         con = DriverManager.getConnection(url, user, password);
         for (int i = 0; i < 1; i++) {
             querySQL("INSERT INTO ticket " +
-                    "(farmName, farmAddress, locationDetails, ticketTitle, date, email, optionalContact, description) VALUES (" +
+                    "(farmName, farmAddress, locationDetail, ticketTitle, date, email, optionalContact, description) VALUES (" +
                     data[0] + ", " + data[1] + "', " + data[2] + ", " + data[3] + ", " + "from_unixtime(" + data[4] + ")" + data[5] + ", " + data[6] + ", " + data[7] + ");"
             );
         }
