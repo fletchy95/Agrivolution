@@ -13,9 +13,8 @@ import android.widget.ImageView;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
+// TODO Renovate SubmitIssue
 public class SubmitIssue extends AppCompatActivity
 {
     Button btnPicture;
@@ -26,6 +25,7 @@ public class SubmitIssue extends AppCompatActivity
     EditText sub_farmAddress;
     EditText locationDetails;
     EditText sub_addInfo;
+    
     static ArrayList issueList = new ArrayList();
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
@@ -33,6 +33,7 @@ public class SubmitIssue extends AppCompatActivity
 
     @TargetApi(23)
     @Override
+    // TODO Update onCreate
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_ticket);
@@ -76,6 +77,7 @@ public class SubmitIssue extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Toast.makeText(SubmitIssue.this, "Ticket Cancelled!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitIssue.this, Dashboard.class));
             }
         });
@@ -103,18 +105,18 @@ public class SubmitIssue extends AppCompatActivity
             imgUpload.setImageBitmap(photo);
         }
     }
-
+    // TODO addToList needs to be modified to put ticket data in a array and send to database
     private void addToList()
     {
-        String list[] = new String[5];
-        list[0] = sub_farmName.toString();
-        list[1] = sub_farmAddress.toString();
-        list[2] = sub_addInfo.toString();
-        list[3] = locationDetails.toString();
-        list[4] = sub_desc.toString();
-        issueList.add(list);
-    }
+        String ticket[] = new String[5];
+        ticket[0] = sub_farmName.toString();
+        ticket[1] = sub_farmAddress.toString();
+        ticket[2] = locationDetails.toString();
+        ticket[3] = .toString();
+        ticket[4] = sub_desc.toString();
 
+    }
+    // TODO validate may need updates, but it is a low priority
     private boolean validate()
     {
         sub_farmAddress = findViewById(R.id.farmAddress);
@@ -125,9 +127,5 @@ public class SubmitIssue extends AppCompatActivity
         String hypothesis = locationDetails.getText().toString();
         String addInfo = sub_addInfo.getText().toString();
         return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
-    }
-    public static ArrayList sendList()
-    {
-        return issueList;
     }
 }
