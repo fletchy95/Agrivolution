@@ -8,16 +8,11 @@ class MySqlUsage
 {
     // Connection info for my personal SQL server.  You will need to adjust this to your settings.
     // TODO setup mysql database, make sure it fits your table, user, and password
+    // TODO setup MySql backend.
     private static String url = "jdbc:mysql://localhost:3306/***Insert Table Name***?useSSL=false";
     private static String user = "";
     private static String password = "";
     private static Connection con;
-    static void clearSQL() throws SQLException
-    {
-        con = DriverManager.getConnection(url, user, password);
-        querySQL("TRUNCATE TABLE forecast;");
-        querySQL("TRUNCATE TABLE currentForecast");
-    }
     static void submitTicket(String[] data) throws SQLException
     {
         con = DriverManager.getConnection(url, user, password);
