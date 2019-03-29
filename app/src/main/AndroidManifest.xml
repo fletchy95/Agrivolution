@@ -26,6 +26,7 @@
         <activity android:name=".UpdateProfile" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".addEncyclopediaData"></activity>
+        <activity android:name=".TicketPage" />
     </application>
 
 </manifest>
