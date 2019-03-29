@@ -20,7 +20,6 @@ public class TicketPage extends ListActivity
     {
         super.onCreate(savedInstanceState);
         issueList = new ArrayList();
-        getList();
         // storing string resources into Array
         // here you store the array of string you got from the database
 
@@ -43,9 +42,5 @@ public class TicketPage extends ListActivity
                 //startActivity(i);
             }
         });
-    }
-    private void getList()
-    {
-        issueList = SubmitIssue.sendList();
     }
 }
