@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1022692096375",
+    "firebase_url": "https://crop-healer.firebaseio.com",
+    "project_id": "crop-healer",
+    "storage_bucket": "crop-healer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022692096375:android:761c890d42d48e13",
+        "android_client_info": {
+          "package_name": "com.example.vanda.agrivolution"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022692096375-9eesd9eplkoib43ef5rnmesubuabbpt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEP5bosY8S_03PAWGF2vSFXyy713Zno30"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

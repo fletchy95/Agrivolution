@@ -12,31 +12,44 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/etFname"
+            android:id="@+id/farmName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="First Name"
+            android:hint="Farm Name"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/farmAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Farm Address"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/locationDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Location Details (if needed)"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etLastName"
+            android:id="@+id/ticketTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Last Name"
-            android:inputType="textPersonName" />
-
+            android:hint="Ticket title"
+        ></EditText>
         <EditText
-            android:id="@+id/etMob"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Mobile Number"
-            android:inputType="textPersonName|phone" />
+            android:hint="Date"
+            android:inputType="date" />
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -44,73 +57,37 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/OptionalContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            android:hint="Optional Contact"
+            android:inputType="" />
 
         <EditText
-            android:id="@+id/etCpassword"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Confirm Password"
-            android:inputType="textPassword" />
-
-        <Spinner
-            android:id="@+id/spinnerUserType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-        <EditText
-            android:id="@+id/farmName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Farm Name"
-            android:visibility="invisible" />
-        <EditText
-            android:id="@+id/farmAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Farm Address"
-            android:visibility="invisible" />
-        <EditText
-            android:id="@+id/specialization"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Specialization"
-            android:visibility="invisible" />
-
-        <EditText
-            android:id="@+id/yoe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Years of Experience"
-            android:inputType="textPersonName|number"
-            android:visibility="invisible" />
+            android:hint="Description"
+            android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Take Picture" />
+        <Button
+            android:id="@+id/btbSubmitTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Ticket" />
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Ticket" />
 
-        <TextView
-            android:id="@+id/tvExistingUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Already Registered? Login !"
-            android:typeface="normal" />
 
     </LinearLayout>
 </ScrollView>
