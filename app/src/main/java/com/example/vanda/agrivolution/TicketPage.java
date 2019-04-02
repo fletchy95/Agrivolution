@@ -18,6 +18,6 @@ public class TicketPage extends ListActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket_page);
+        setContentView(R.layout.activity_ticket_list);
     }
 }
