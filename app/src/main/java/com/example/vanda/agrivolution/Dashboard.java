@@ -81,7 +81,7 @@ public class Dashboard extends AppCompatActivity {
         btnHeatMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Dashboard.this, placeholder.class));
+                startActivity(new Intent(Dashboard.this, HeatmapActivity.class));
             }
         });
         btnSubmitIssue.setOnClickListener(new View.OnClickListener() {
