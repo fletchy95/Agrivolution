@@ -14,19 +14,21 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
-
 public class SubmitIssue extends AppCompatActivity
 {
     Button btnPicture;
     Button btnSubmitIssue;
     Button btnCancelTicket;
-    EditText sub_desc;
-    EditText sub_farmName;
-    EditText sub_farmAddress;
-    EditText sub_hypothesis;
-    EditText sub_addInfo;
-    Button but;
+    EditText description;
+    EditText farmName;
+    EditText farmAddress;
+    EditText locationDetail;
+    EditText ticketTitle;
+    EditText optionalContact;
+    EditText date;
+    EditText email;
     static ArrayList issueList = new ArrayList();
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
@@ -36,16 +38,19 @@ public class SubmitIssue extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit_issue);
-        btnSubmitIssue = findViewById(R.id.btnSubmitIssue);
-        btnCancelTicket = findViewById(R.id.btnCancelTicket);
+        setContentView(R.layout.activity_submit_ticket);
+        btnSubmitIssue = findViewById(R.id.btbSubmitTicket);
+        btnCancelTicket = findViewById(R.id.btnCancel);
         imgUpload = this.findViewById(R.id.ImgUpload);
         btnPicture = this.findViewById(R.id.btnPicture);
-        sub_desc = findViewById(R.id.sub_Disc);
-        sub_farmName = findViewById(R.id.sub_farmName);
-        sub_farmAddress = findViewById(R.id.sub_farmAddress);
-        sub_hypothesis = findViewById(R.id.sub_hypothesis);
-        sub_addInfo = findViewById(R.id.sub_addInfo);
+        description = findViewById(R.id.description);
+        farmName = findViewById(R.id.farmName);
+        farmAddress = findViewById(R.id.farmAddress);
+        ticketTitle = findViewById(R.id.ticketTitle);
+        optionalContact = findViewById(R.id.OptionalContact);
+        date = findViewById(R.id.date);
+        email = findViewById(R.id.email);
+        this.locationDetail = findViewById(R.id.locationDetail);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +83,7 @@ public class SubmitIssue extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Toast.makeText(SubmitIssue.this, "Ticket Cancelled!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitIssue.this, Dashboard.class));
             }
         });
@@ -105,32 +111,22 @@ public class SubmitIssue extends AppCompatActivity
             imgUpload.setImageBitmap(photo);
         }
     }
-
-    private void addToList()
+    private void addToList() throws SQLException
     {
-        String list[] = new String[5];
-        list[0] = sub_farmName.toString();
-        list[1] = sub_farmAddress.toString();
-        list[2] = sub_addInfo.toString();
-        list[3] = sub_hypothesis.toString();
-        list[4] = sub_desc.toString();
-        issueList.add(list);
+        String ticket[] = new String[8];
+        ticket[0] = farmName.toString();
+        ticket[1] = farmAddress.toString();
+        ticket[2] = locationDetail.toString();
+        ticket[3] = ticketTitle.toString();
+        ticket[4] = date.toString();
+        ticket[5] = email.toString();
+        ticket[6] = optionalContact.toString();
+        ticket[7] = description.toString();
+        MySqlUsage.submitTicket(ticket);
     }
-
+    // TODO validate must be implemented, low Priority, will complete later. For now it will auto accept.
     private boolean validate()
     {
-        sub_farmAddress = findViewById(R.id.sub_farmAddress);
-        sub_hypothesis = findViewById(R.id.sub_hypothesis);
-        sub_addInfo = findViewById(R.id.sub_addInfo);
-        String desc = sub_desc.getText().toString();
-        String farmName = sub_farmName.getText().toString();
-        String farmAddress = sub_farmAddress.getText().toString();
-        String hypothesis = sub_hypothesis.getText().toString();
-        String addInfo = sub_addInfo.getText().toString();
-        return !desc.equals("") && !farmName.equals("") && !farmAddress.equals("") && !hypothesis.equals("") && !addInfo.equals("");
-    }
-    public static ArrayList sendList()
-    {
-        return issueList;
+        return true;
     }
 }

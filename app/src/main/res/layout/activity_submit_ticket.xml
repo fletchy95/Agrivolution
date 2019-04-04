@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/farmName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Farm Name"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/farmAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Farm Address"
+            android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/locationDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Location Details (if needed)"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/ticketTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ticket title"
+        ></EditText>
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Date"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/OptionalContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Optional Contact"
+            android:inputType="" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/btnPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Take Picture" />
+        <Button
+            android:id="@+id/btbSubmitTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Ticket" />
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Ticket" />
+
+
+    </LinearLayout>
+</ScrollView>
