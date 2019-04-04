@@ -16,12 +16,11 @@ class MySqlUsage
     {
         con = DriverManager.getConnection(url, user, password);
         for (int i = 0; i < 1; i++) {
-            querySQL("INSERT INTO ticket " +
+            querySQL("INSERT INTO Tickets " +
                     "(farmName, farmAddress, locationDetail, ticketTitle, date, email, optionalContact, description) VALUES (" +
-                    data[0] + ", " + data[1] + "', " + data[2] + ", " + data[3] + ", " + "from_unixtime(" + data[4] + ")" + data[5] + ", " + data[6] + ", " + data[7] + ");"
-            );
+                    data[0] + ", " + data[1] + ", " + data[2] + ", " + data[3] + ", " + data[4] + ", " + data[5] + ", " + data[6] + ", " + data[7] + ");"
+            ); // Unix: "from_unixtime(" + data[4] + ")"
         }
-
     }
     // TODO create a get ticket method.  This should load already existing tickets in to ticket page.
     private static void getTickets()

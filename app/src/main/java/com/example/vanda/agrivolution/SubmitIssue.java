@@ -69,7 +69,11 @@ public class SubmitIssue extends AppCompatActivity
             public void onClick(View v) {
                 if(validate())
                 {
-
+                    try {
+                        addToList();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(SubmitIssue.this, "Issue Submitted!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SubmitIssue.this, Dashboard.class));
                 }

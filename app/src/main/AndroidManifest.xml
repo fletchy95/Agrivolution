@@ -67,5 +67,4 @@
         <activity android:name=".addEncyclopediaData" />
         <activity android:name=".TicketPage" />
     </application>
-
 </manifest>
