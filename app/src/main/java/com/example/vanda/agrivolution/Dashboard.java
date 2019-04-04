@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import android.widget.ImageButton;
@@ -15,12 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Dashboard extends AppCompatActivity {
 
-    ImageButton btnSubmitIssue;
-    ImageButton btnCommunity;
-    ImageButton btnShop;
-    ImageButton btnHeatMap;
-    ImageButton btnEncyclopedia;
-    ImageButton btnTicketPage;
+    Button btnSubmitIssue;
+    Button btnCommunity;
+    Button btnShop;
+    Button btnHeatMap;
+    Button btnEncyclopedia;
+    Button btnTicketPage;
+    ImageButton btnAccount;
 
     private FirebaseAuth firebaseAuth;
 
@@ -32,7 +34,7 @@ public class Dashboard extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        ImageButton btnAccount = findViewById(R.id.btnAccount);
+        btnAccount = findViewById(R.id.btn_Account);
         final PopupMenu dropDownAccount = new PopupMenu(getApplicationContext(), btnAccount);
         final Menu menu = dropDownAccount.getMenu();
         menu.add(0,0,0,"Account Details");
@@ -65,12 +67,12 @@ public class Dashboard extends AppCompatActivity {
                 dropDownAccount.show();
             }
         });
-        btnCommunity = findViewById(R.id.btnCommunity);
-        btnSubmitIssue = findViewById(R.id.btnSubmitIssue);
-        btnShop = findViewById(R.id.btnShop);
-        btnHeatMap = findViewById(R.id.btnHeatMap);
-        btnEncyclopedia = findViewById(R.id.btnEncyclopedia);
-        btnTicketPage = findViewById(R.id.btnTicketPage);
+        btnCommunity = findViewById(R.id.btn_Community);
+        btnSubmitIssue = findViewById(R.id.btn_SubmitTicket);
+        btnShop = findViewById(R.id.btn_Shop);
+        btnHeatMap = findViewById(R.id.btn_HeatMap);
+        btnEncyclopedia = findViewById(R.id.btn_Encyclopedia);
+        btnTicketPage = findViewById(R.id.btn_TicketPage);
         // Will setup button Listeners once the pages for these have been created.
         btnEncyclopedia.setOnClickListener(new View.OnClickListener() {
             @Override
