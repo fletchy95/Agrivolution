@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/me_time"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/family_time"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/lovely_time"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -201,7 +201,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/team_time"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -243,7 +243,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/friends"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -282,7 +282,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -358,7 +358,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -396,7 +396,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -434,7 +434,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -472,7 +472,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -510,7 +510,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/calendar"
+                        android:src="@drawable/noimage"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
