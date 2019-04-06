@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,8 @@ public class UpdateProfile extends AppCompatActivity {
     private Button save;
     private FirebaseAuth firebaseauthObj;
     private FirebaseDatabase firebasedatabaseObj;
+    private String userID;
+    private FirebaseAuth auth;
     String RetrievedUserType;
 
 
@@ -43,27 +46,46 @@ public class UpdateProfile extends AppCompatActivity {
         newSpec = findViewById(R.id.etSpecUpdate);
         save = findViewById(R.id.btnSave);
 
-      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        firebaseauthObj = FirebaseAuth.getInstance();
+//        firebasedatabaseObj = FirebaseDatabase.getInstance();
+//
+//        final DatabaseReference databaserefObj = firebasedatabaseObj.getReference(firebaseauthObj.getUid());
+
         firebaseauthObj = FirebaseAuth.getInstance();
         firebasedatabaseObj = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseRefObj = firebasedatabaseObj.getReference();
+        FirebaseUser user = firebaseauthObj.getCurrentUser();
+        userID = user.getUid();
+        auth = FirebaseAuth.getInstance();
 
-        final DatabaseReference databaserefObj = firebasedatabaseObj.getReference(firebaseauthObj.getUid());
-        databaserefObj.addValueEventListener(new ValueEventListener() {
+        databaseRefObj.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserProfile userprofObj = dataSnapshot.getValue(UserProfile.class);
-                newFname.setText(userprofObj.getFirstName());
-                newLname.setText(userprofObj.getLastName());
-                newMob.setText(userprofObj.getMobile());
-                newEmail.setText(userprofObj.getEmail());
-                newUserType.setText(userprofObj.getUserType());
-                newFarmName.setText(userprofObj.getFarmName());
-                newFarmAdd.setText(userprofObj.getFarmAddress());
-                newYoe.setText(userprofObj.getYearsOfExperience());
-                newSpec.setText(userprofObj.getSpecialization());
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    UserProfile userProf = new UserProfile();
+                    userProf.setFirstName(ds.child(userID).getValue(UserProfile.class).getFirstName());
+                    userProf.setLastName(ds.child(userID).getValue(UserProfile.class).getLastName());
+                    userProf.setMobile(ds.child(userID).getValue(UserProfile.class).getMobile());
+                    userProf.setEmail(ds.child(userID).getValue(UserProfile.class).getEmail());
+                    userProf.setUserType(ds.child(userID).getValue(UserProfile.class).getUserType());
+                    userProf.setFarmName(ds.child(userID).getValue(UserProfile.class).getFarmName());
+                    userProf.setFarmAddress(ds.child(userID).getValue(UserProfile.class).getFarmAddress());
+                    userProf.setYearsOfExperience(ds.child(userID).getValue(UserProfile.class).getYearsOfExperience());
+                    userProf.setSpecialization(ds.child(userID).getValue(UserProfile.class).getSpecialization());
 
-                RetrievedUserType  = userprofObj.getUserType();
-                if(RetrievedUserType.equals("Farmer"))
+                newFname.setText(userProf.getFirstName());
+                newLname.setText(userProf.getLastName());
+                newMob.setText(userProf.getMobile());
+                newEmail.setText(userProf.getEmail());
+                newUserType.setText(userProf.getUserType());
+                newFarmName.setText(userProf.getFarmName());
+                newFarmAdd.setText(userProf.getFarmAddress());
+                newYoe.setText(userProf.getYearsOfExperience());
+                newSpec.setText(userProf.getSpecialization());
+
+                    RetrievedUserType  = userProf.getUserType();
+                    if(RetrievedUserType.equals("Farmer"))
                 {
                     newSpec.setVisibility(View.GONE);
                     newFarmName.setVisibility(View.VISIBLE);
@@ -84,6 +106,8 @@ public class UpdateProfile extends AppCompatActivity {
                     newSpec.setVisibility(View.GONE);
                     newYoe.setVisibility(View.GONE);
                 }
+
+                }
             }
 
             @Override
@@ -91,6 +115,8 @@ public class UpdateProfile extends AppCompatActivity {
                 Toast.makeText(UpdateProfile.this, databaseError.getCode(),Toast.LENGTH_SHORT).show();
             }
         });
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +143,15 @@ public class UpdateProfile extends AppCompatActivity {
                     yoe = newYoe.getText().toString();
                     specialization = newSpec.getText().toString();
                 }
-                UserProfile obj = new UserProfile(firstname, lastname, Mobile,email,farmName, farmAdd, yoe, specialization,type);
-                databaserefObj.setValue(obj);
+
+                FirebaseDatabase firebaseDatabaseObj = FirebaseDatabase.getInstance();
+                DatabaseReference ref = firebaseDatabaseObj.getReference();
+                UserProfile userProfileObj = new UserProfile(firstname, lastname, Mobile,email,farmName, farmAdd, yoe, specialization,type);
+                ref.child("User").child(auth.getUid()).setValue(userProfileObj);
+
+
+//                UserProfile obj = new UserProfile(firstname, lastname, Mobile,email,farmName, farmAdd, yoe, specialization,type);
+//                databaseRefObj.setValue(obj);
                 Toast.makeText(UpdateProfile.this,"Profile Updated successfully!",Toast.LENGTH_SHORT).show();
                 finish();
             }

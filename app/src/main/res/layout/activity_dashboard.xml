@@ -1,202 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
-        android:id="@+id/btnTicketPage"
-        android:layout_width="139dp"
-        android:layout_height="97dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/heat_map"
-        android:scaleType="fitCenter"
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452"
-        app:srcCompat="@drawable/map"
-        tools:srcCompat="@drawable/map" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/btnSubmitIssue"
-        android:layout_width="139dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="13dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/submit_an_issue"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:srcCompat="@drawable/camera" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_TicketPage"
+            android:paddingBottom="70dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/where_would_you_like_to_go"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:text="@string/encyclopedia"
-        app:layout_constraintBottom_toTopOf="@+id/btnEncyclopedia"
-        app:layout_constraintStart_toStartOf="@+id/btnEncyclopedia" />
+        <ImageButton
+            android:id="@+id/btn_Account"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/accountinfo"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.982"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/account_img"
+            tools:srcCompat="@drawable/account_img" />
 
-    <ImageButton
-        android:id="@+id/btnCommunity"
-        android:layout_width="138dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/community"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSubmitIssue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnSubmitIssue"
-        app:srcCompat="@drawable/community"
-        tools:srcCompat="@drawable/community" />
+        <Button
+            android:id="@+id/btn_Shop"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Shop"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="129dp"
-        android:layout_marginRight="129dp"
-        android:layout_marginBottom="128dp"
-        android:text="@string/heat_map"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/btnHeatMap"
-        app:layout_constraintTop_toTopOf="@+id/btnSubmitIssue"
-        app:layout_constraintVertical_bias="1.0" />
+        <Button
+            android:id="@+id/btn_SubmitTicket"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_above="@id/btn_Shop"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Submit Ticket"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <ImageButton
-        android:id="@+id/btnShop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/shop_for_products"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/btnEncyclopedia"
-        app:layout_constraintEnd_toStartOf="@+id/btnEncyclopedia"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:srcCompat="@drawable/eye"
-        tools:srcCompat="@drawable/eye" />
+        <Button
+            android:id="@+id/btn_TicketPage"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_above="@id/btn_SubmitTicket"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Ticket Page"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="45dp"
-        android:text="@string/community"
-        app:layout_constraintStart_toEndOf="@+id/btnSubmitIssue"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btn_HeatMap"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/btn_Shop"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Heat Map"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <ImageButton
-        android:id="@+id/btnHeatMap"
-        android:layout_width="139dp"
-        android:layout_height="97dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/heat_map"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452"
-        app:srcCompat="@drawable/map"
-        tools:srcCompat="@drawable/map" />
+        <Button
+            android:id="@+id/btn_Encyclopedia"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/btn_HeatMap"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Encyclopedia"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="31dp"
-        android:text="@string/shop_for_products"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnHeatMap" />
-
-    <ImageButton
-        android:id="@+id/btnEncyclopedia"
-        android:layout_width="139dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginBottom="60dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/encyclopedia"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/books"
-        tools:srcCompat="@drawable/books" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginLeft="43dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginRight="46dp"
-        android:text="@string/submit_an_issue"
-        app:layout_constraintEnd_toEndOf="@+id/btnSubmitIssue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnAccount"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/accountinfo"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/account_img"
-        tools:srcCompat="@drawable/account_img" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="129dp"
-        android:layout_marginLeft="129dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginRight="77dp"
-        android:layout_marginBottom="9dp"
-        android:text="TicketPage"
-        app:layout_constraintBottom_toTopOf="@+id/btnTicketPage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/btnCommunity" />
-
+        <Button
+            android:id="@+id/btn_Community"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/btn_Encyclopedia"
+            android:layout_centerInParent="true"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Community"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

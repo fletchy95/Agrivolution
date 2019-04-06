@@ -41,4 +41,24 @@
         <item>Expert</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="input_text">Looking for…</string>
+    <string name="button_send">Go!</string>
+    <string name="pest">Whiteflies</string>
+    <string name="pest2">Brown Stink Bug</string>
+    <string name="pest3">Soybean Thrips</string>
+    <string name="attrib_format">Data from &lt;a href = "%s">data.agri.us&lt;/a>, modified under &lt;a href = \"http://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 US&lt;/a></string>
+    <string name="pest_url">http://data.agri.us</string>
+    <string name="pest2_url">http://data.agri.us</string>
+    <string name="pest3_url">http://data.agri.us</string>
+    <string name="geojson_url">https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson</string>
+    <string-array name="heatmaps_datasets_array">
+        <item>@string/pest</item>
+        <item>@string/pest2</item>
+        <item>@string/pest3</item>
+    </string-array>
+    <string name="button_radius">Radius</string>
+    <string name="button_gradient">Gradient</string>
+    <string name="button_opacity">Opacity</string>
+    <string name="where_would_you_like_to_go">Where would you like to go?</string>
 </resources>
