@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
 public class addEncyclopediaData extends AppCompatActivity {
     private ImageButton mSelectImage;
-    private static final int Gallery_Request =1;
+    private static final int GALLERY_REQUEST =1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +27,7 @@ public class addEncyclopediaData extends AppCompatActivity {
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,Gallery_Request);
+                startActivityForResult(galleryIntent,GALLERY_REQUEST);
             }
         });
     }
@@ -32,9 +36,25 @@ public class addEncyclopediaData extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode== Gallery_Request && requestCode == RESULT_OK){
+        if(requestCode== GALLERY_REQUEST && resultCode == RESULT_OK){
             Uri imageUri = data.getData();
-            mSelectImage.setImageURI(imageUri);
+            CropImage.activity(imageUri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(this);
+
+
+
+        }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+
+                Uri resultUri = result.getUri();
+                mSelectImage.setImageURI(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
         }
     }
 }
