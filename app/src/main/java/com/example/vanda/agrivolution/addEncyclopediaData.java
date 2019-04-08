@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
@@ -41,8 +43,8 @@ public class addEncyclopediaData extends AppCompatActivity {
 
     private Uri mImageUri =null;
     private StorageReference mStorage;
+    private DatabaseReference mDatabase;
     private ProgressDialog mProgress;
-    private Uri downloadUri;
 
     private static final int GALLERY_REQUEST =1;
     @Override
@@ -66,6 +68,8 @@ public class addEncyclopediaData extends AppCompatActivity {
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgress = new ProgressDialog(this);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Encyclopedia");
+
         mSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +88,7 @@ public class addEncyclopediaData extends AppCompatActivity {
     }
 
     private void startPosting() {
-        mProgress.setMessage("Posting to Encyclopedia");
+       mProgress.setMessage("Posting to Encyclopedia");
         mProgress.show();
 
         String PestName = mName.getText().toString().trim();
@@ -108,11 +112,16 @@ public class addEncyclopediaData extends AppCompatActivity {
                     downloadUrlTask.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            downloadUri = uri;
+                            Uri downloadUri = uri;
+                            String imageUrl = downloadUri.toString();
+                            DatabaseReference newPost = mDatabase.push();
+                            PestEncyclopedia newPest = new PestEncyclopedia(PestName,PestType,PestHost,PestDesc,PestSymptom,PestTrigger,PestPrevMeasure,PestBioControl,PestChemControl, imageUrl);
+                            newPost.setValue(newPest);
+                            mProgress.dismiss();
+                            Toast.makeText(addEncyclopediaData.this,"Added new Pathogen Successfully !",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(addEncyclopediaData.this,Encyclopedia.class));
                         }
                     });
-
-                    mProgress.dismiss();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -120,6 +129,9 @@ public class addEncyclopediaData extends AppCompatActivity {
                     Toast.makeText(addEncyclopediaData.this, "Upload Fail", Toast.LENGTH_SHORT).show();
                 }
             });
+        }else{
+          mProgress.dismiss();
+            Toast.makeText(addEncyclopediaData.this, "Please add image, name and the type of the pathogen", Toast.LENGTH_SHORT).show();
         }
 
     }
