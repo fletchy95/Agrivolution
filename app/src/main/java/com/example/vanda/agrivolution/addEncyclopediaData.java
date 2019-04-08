@@ -89,7 +89,7 @@ public class addEncyclopediaData extends AppCompatActivity {
 
     private void startPosting() {
        mProgress.setMessage("Posting to Encyclopedia");
-        mProgress.show();
+
 
         String PestName = mName.getText().toString().trim();
         String PestType = mType.getText().toString().trim();
@@ -103,6 +103,7 @@ public class addEncyclopediaData extends AppCompatActivity {
 
 
         if(!TextUtils.isEmpty(PestName)&& !TextUtils.isEmpty(PestType)&& mImageUri!= null){
+            mProgress.show();
             StorageReference filepath = mStorage.child("Encyclopedia_Images").child(mImageUri.getLastPathSegment());
             filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
