@@ -13,10 +13,10 @@
 
         <ImageButton
             android:id="@+id/imageSelect"
-            android:layout_width="407dp"
-            android:layout_height="217dp"
-            android:contentDescription="TODO"
-            app:srcCompat="@mipmap/add_btn" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:srcCompat="@mipmap/add_pest_btn" />
 
         <EditText
             android:id="@+id/nameField"
