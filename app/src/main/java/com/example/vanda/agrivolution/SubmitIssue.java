@@ -14,6 +14,11 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 public class SubmitIssue extends AppCompatActivity
@@ -34,23 +39,24 @@ public class SubmitIssue extends AppCompatActivity
     private ImageView imgUpload;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
+    private String  tFramName, tFarmAdd, tLoc, tTicketTitle, tDate, temail, tContact, tDesc;
+            //userId ;
+    private FirebaseAuth firebaseauthObj;
+    private DatabaseReference mDatabase;
+
     @TargetApi(23)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_ticket);
-        btnSubmitIssue = findViewById(R.id.btbSubmitTicket);
-        btnCancelTicket = findViewById(R.id.btnCancel);
-        imgUpload = this.findViewById(R.id.ImgUpload);
-        btnPicture = this.findViewById(R.id.btnPicture);
-        description = findViewById(R.id.description);
-        farmName = findViewById(R.id.farmName);
-        farmAddress = findViewById(R.id.farmAddress);
-        ticketTitle = findViewById(R.id.ticketTitle);
-        optionalContact = findViewById(R.id.OptionalContact);
-        date = findViewById(R.id.date);
-        email = findViewById(R.id.email);
-        this.locationDetail = findViewById(R.id.locationDetail);
+        setupUIViews();
+
+      //  firebaseauthObj = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets");
+
+       // FirebaseUser user = firebaseauthObj.getCurrentUser();
+      //  userId = user.getUid();
+
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,11 +75,12 @@ public class SubmitIssue extends AppCompatActivity
             public void onClick(View v) {
                 if(validate())
                 {
-                    try {
-                        addToList();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        addToList();
+//                    } catch (SQLException e) {
+//                        e.printStackTrace();
+//                    }
+                    createTicket();
                     Toast.makeText(SubmitIssue.this, "Issue Submitted!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SubmitIssue.this, Dashboard.class));
                 }
@@ -115,22 +122,58 @@ public class SubmitIssue extends AppCompatActivity
             imgUpload.setImageBitmap(photo);
         }
     }
-    private void addToList() throws SQLException
-    {
-        String ticket[] = new String[8];
-        ticket[0] = farmName.toString();
-        ticket[1] = farmAddress.toString();
-        ticket[2] = locationDetail.toString();
-        ticket[3] = ticketTitle.toString();
-        ticket[4] = date.toString();
-        ticket[5] = email.toString();
-        ticket[6] = optionalContact.toString();
-        ticket[7] = description.toString();
-        MySqlUsage.submitTicket(ticket);
+    public void createTicket(){
+        DatabaseReference newTicket = mDatabase.push();
+        Ticket ticketObj = new Ticket(tFramName,tFarmAdd,tLoc,tTicketTitle,tDate,temail,tContact,tDesc);
+        newTicket.setValue(ticketObj);
     }
+//    private void addToList() throws SQLException
+//    {
+//        String ticket[] = new String[8];
+//        ticket[0] = farmName.toString();
+//        ticket[1] = farmAddress.toString();
+//        ticket[2] = locationDetail.toString();
+//        ticket[3] = ticketTitle.toString();
+//        ticket[4] = date.toString();
+//        ticket[5] = email.toString();
+//        ticket[6] = optionalContact.toString();
+//        ticket[7] = description.toString();
+//        MySqlUsage.submitTicket(ticket);
+//    }
     // TODO validate must be implemented, low Priority, will complete later. For now it will auto accept.
+        private void setupUIViews(){
+            btnSubmitIssue = findViewById(R.id.btbSubmitTicket);
+            btnCancelTicket = findViewById(R.id.btnCancel);
+            btnPicture = this.findViewById(R.id.btnPicture);
+            imgUpload = this.findViewById(R.id.ImgUpload);
+
+            farmName = findViewById(R.id.farmName);
+            farmAddress = findViewById(R.id.farmAddress);
+            locationDetail = findViewById(R.id.locationDetail);
+            ticketTitle = findViewById(R.id.ticketTitle);
+            date = findViewById(R.id.date);
+            email = findViewById(R.id.email);
+            optionalContact = findViewById(R.id.OptionalContact);
+            description = findViewById(R.id.description);
+
+        }
     private boolean validate()
     {
-        return true;
+        tFramName = farmName.getText().toString();
+        tFarmAdd = farmAddress.getText().toString();
+        tLoc = locationDetail.getText().toString();
+        tTicketTitle= ticketTitle.getText().toString();
+        tDate = date.getText().toString();
+        temail = email.getText().toString();
+        tContact = optionalContact.getText().toString();
+        tDesc = description.getText().toString();
+
+
+        if (tFramName.isEmpty() || tFarmAdd.isEmpty() || tTicketTitle.isEmpty() || tDate.isEmpty() || tDesc.isEmpty()) {
+            return false;
+        }else{
+            return true;
+        }
+
     }
 }
