@@ -54,6 +54,7 @@ public class SubmitIssue extends AppCompatActivity
     private String temail;
     private String tContact;
     private String tDesc;
+    private String tTicketTitle;
     private FirebaseAuth firebaseauthObj;
     private DatabaseReference mDatabase;
     private static final int GALLERY_REQUEST =1;
@@ -65,6 +66,9 @@ public class SubmitIssue extends AppCompatActivity
         setContentView(R.layout.activity_submit_ticket);
         setupUIViews();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets");
+        mStorage = FirebaseStorage.getInstance().getReference();
+        tDialog = new ProgressDialog(this);
+
         ticketImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +84,7 @@ public class SubmitIssue extends AppCompatActivity
             {
                 if(validate())
                 {
+                    tDialog.setMessage("Sending new Ticket");
                     createTicket();
                     Toast.makeText(SubmitIssue.this, "Issue Submitted!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SubmitIssue.this, Dashboard.class));
@@ -98,10 +103,7 @@ public class SubmitIssue extends AppCompatActivity
                 startActivity(new Intent(SubmitIssue.this, Dashboard.class));
             }
         });
-        mStorage = FirebaseStorage.getInstance().getReference();
-
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -125,23 +127,9 @@ public class SubmitIssue extends AppCompatActivity
         }
     }*/
     public void createTicket(){
-        //DatabaseReference newTicket = mDatabase.push();
-        //Ticket ticketObj = new Ticket(tFramName,tFarmAdd,tLoc,tTicketTitle,tDate,temail,tContact,tDesc);
-        //newTicket.setValue(ticketObj);
-        tDialog.setMessage("Sending new Ticket");
 
-        String FarmName = farmName.getText().toString().trim();
-        String FarmAddress = farmAddress.getText().toString().trim();
-        String LocationDetail = locationDetail.getText().toString().trim();
-        String TicketTitle = ticketTitle.getText().toString().trim();
-        String Date = date.getText().toString().trim();
-        String Email = email.getText().toString().trim();
-        String OptionalContact = optionalContact.getText().toString().trim();
-        String Description = description.getText().toString().trim();
-
-        if(!TextUtils.isEmpty(FarmName)&& !TextUtils.isEmpty(FarmAddress)&& ticketURL!= null){
             tDialog.show();
-            StorageReference filepath = mStorage.child("Encyclopedia_Images").child(ticketURL.getLastPathSegment());
+            StorageReference filepath = mStorage.child("Ticket_Images").child(ticketURL.getLastPathSegment());
             filepath.putFile(ticketURL).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -153,7 +141,7 @@ public class SubmitIssue extends AppCompatActivity
                             Uri downloadUri = uri;
                             String imageUrl = downloadUri.toString();
                             DatabaseReference newTicket = mDatabase.push();
-                            Ticket ticket = new Ticket(FarmName,FarmAddress,LocationDetail,TicketTitle,Date,Email,OptionalContact,Description, imageUrl);
+                            Ticket ticket = new Ticket(tFramName,tFarmAdd,tLoc,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl);
                             newTicket.setValue(ticket);
                             tDialog.dismiss();
                             Toast.makeText(SubmitIssue.this,"New Ticket Submitted!",Toast.LENGTH_SHORT).show();
@@ -167,10 +155,6 @@ public class SubmitIssue extends AppCompatActivity
                     Toast.makeText(SubmitIssue.this, "Ticket Failed", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else{
-            tDialog.dismiss();
-            Toast.makeText(SubmitIssue.this, "Please add image, and/or any other missed information", Toast.LENGTH_SHORT).show();
-        }
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -215,7 +199,7 @@ public class SubmitIssue extends AppCompatActivity
         tFramName = farmName.getText().toString();
         tFarmAdd = farmAddress.getText().toString();
         tLoc = locationDetail.getText().toString();
-        String tTicketTitle = ticketTitle.getText().toString();
+        tTicketTitle = ticketTitle.getText().toString();
         tDate = date.getText().toString();
         temail = email.getText().toString();
         tContact = optionalContact.getText().toString();
