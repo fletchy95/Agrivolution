@@ -81,7 +81,7 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
     /**
      * Alternative radius for convolution
      */
-    private static final int ALT_HEATMAP_RADIUS = 10;
+    private static final int ALT_HEATMAP_RADIUS = 50;
 
     /**
      * Alternative opacity of heatmap overlay
@@ -118,6 +118,8 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
      * Maps name of data set to data (list of LatLngs)
      * Also maps to the URL of the data set for attribution
      */
+    private HashMap<String, DataSet> mListsS = new HashMap<String, DataSet>();
+    private HashMap<String, DataSet> mListsYr = new HashMap<String, DataSet>();
     private HashMap<String, DataSet> mLists = new HashMap<String, DataSet>();
 
     protected int getLayoutId() {
@@ -127,7 +129,51 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
     protected void startDemo() {
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(41.30, -72.92), 4));
 
-        // Set up the spinner/dropdown list
+        // Set up the season spinner/dropdown list
+        Spinner spinnerS = (Spinner) findViewById(R.id.spinner_s);
+        ArrayAdapter<CharSequence> adapterS = ArrayAdapter.createFromResource(this,
+                R.array.heatmaps_datasets_array_season, android.R.layout.simple_spinner_item);
+        adapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerS.setAdapter(adapterS);
+//        spinnerS.setOnItemSelectedListener(new SpinnerActivity());
+
+        try {
+            mListsS.put(getString(R.string.spring), new DataSet(readItems(R.raw.yr2019springwhiteflies),
+                    getString(R.string.spring_url)));
+            mListsS.put(getString(R.string.summer), new DataSet(readItems(R.raw.yr2019summerwhiteflies),
+                    getString(R.string.summer_url)));
+            mListsS.put(getString(R.string.fall), new DataSet(readItems(R.raw.yr2019fallwhiteflies),
+                    getString(R.string.fall_url)));
+            mListsS.put(getString(R.string.winter), new DataSet(readItems(R.raw.yr2019winterwhiteflies),
+                    getString(R.string.winter_url)));
+        } catch (JSONException e) {
+            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
+        }
+
+        // Set up the year spinner/dropdown list
+        Spinner spinnerYr = (Spinner) findViewById(R.id.spinner_yr);
+        ArrayAdapter<CharSequence> adapterYr = ArrayAdapter.createFromResource(this,
+                R.array.heatmaps_datasets_array_yr, android.R.layout.simple_spinner_item);
+        adapterYr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerYr.setAdapter(adapterYr);
+//        spinnerYr.setOnItemSelectedListener(new SpinnerActivity());
+
+        try {
+            mListsYr.put(getString(R.string.yr2019), new DataSet(readItems(R.raw.yr2019springwhiteflies),
+                    getString(R.string.yr2019_url)));
+            mListsYr.put(getString(R.string.yr2018), new DataSet(readItems(R.raw.yr2018springwhiteflies),
+                    getString(R.string.yr2018_url)));
+            mListsYr.put(getString(R.string.yr2017), new DataSet(readItems(R.raw.yr2017springwhiteflies),
+                    getString(R.string.yr2017_url)));
+            mListsYr.put(getString(R.string.yr2016), new DataSet(readItems(R.raw.yr2016springwhiteflies),
+                    getString(R.string.yr2016_url)));
+            mListsYr.put(getString(R.string.yr2015), new DataSet(readItems(R.raw.yr2015springwhiteflies),
+                    getString(R.string.yr2015_url)));
+        } catch (JSONException e) {
+            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
+        }
+
+        // Set up the pest spinner/dropdown list
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.heatmaps_datasets_array, android.R.layout.simple_spinner_item);
@@ -136,12 +182,10 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
         spinner.setOnItemSelectedListener(new SpinnerActivity());
 
         try {
-            mLists.put(getString(R.string.pest), new DataSet(readItems(R.raw.pest),
-                    getString(R.string.pest_url)));
-            mLists.put(getString(R.string.pest2), new DataSet(readItems(R.raw.pest2),
-                    getString(R.string.pest2_url)));
-            mLists.put(getString(R.string.pest3), new DataSet(readItems(R.raw.pest3),
-                    getString(R.string.pest3)));
+            mLists.put(getString(R.string.whiteflies), new DataSet(readItems(R.raw.yr2019springwhiteflies),
+                    getString(R.string.whiteflies_url)));
+            mLists.put(getString(R.string.brown_stink_bug), new DataSet(readItems(R.raw.yr2019springbrown_stink_bug),
+                    getString(R.string.brown_Stink_Bug_url)));
         } catch (JSONException e) {
             Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
         }
@@ -188,7 +232,7 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
             // Check if need to instantiate (avoid setData etc twice)
             if (mProvider == null) {
                 mProvider = new HeatmapTileProvider.Builder().data(
-                        mLists.get(getString(R.string.pest)).getData()).build();
+                        mLists.get(getString(R.string.whiteflies)).getData()).build();
                 mOverlay = getMap().addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
                 // Render links
                 attribution.setMovementMethod(LinkMovementMethod.getInstance());
