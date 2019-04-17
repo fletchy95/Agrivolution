@@ -10,8 +10,9 @@ public class Ticket
     private String email;
     private String optionalContact;
     private String description;
+    private String imageURL;
     //private String userID;
-    public Ticket(String farmName, String farmAddress, String locationDetails, String ticketTitle, String date, String email, String optionalContact, String description)
+    public Ticket(String farmName, String farmAddress, String locationDetails, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL)
     {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
@@ -21,7 +22,7 @@ public class Ticket
         this.email = email;
         this.optionalContact = optionalContact;
         this.description = description;
-      //  this.userID = userID;
+        this.imageURL = imageURL;
     }
 
     public String getFarmName() {
@@ -86,6 +87,14 @@ public class Ticket
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 //    public String getUpdatedby() {
 //        return userID;
