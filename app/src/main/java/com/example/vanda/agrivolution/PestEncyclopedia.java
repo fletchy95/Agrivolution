@@ -16,6 +16,10 @@ public class PestEncyclopedia {
     public PestEncyclopedia(){
 
     }
+    public PestEncyclopedia(String pestName, String PestType){
+        Name = pestName;
+        Type = PestType;
+    }
     public PestEncyclopedia(String pestName, String PestType, String PestHost, String PestDesc, String PestSymptom, String PestTrigger, String PestPrevMeasure, String PestBioControl, String PestChemControl, String PestUrl){
         Name = pestName;
         Type = PestType;
