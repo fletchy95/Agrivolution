@@ -1,31 +1,52 @@
 package com.example.vanda.agrivolution;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import com.google.firebase.database.DataSnapshot;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class Encyclopedia extends AppCompatActivity
 {
     private Button Add;
-    ImageButton btnPest1;
-    ImageButton btnPest2;
-    ImageButton btnPest3;
-    ImageButton btnPest4;
-    Button btnBack;
+    private Button btnBack;
+    private DatabaseReference mDatabase;
+    private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
+
+    private RecyclerView mPestList;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encyclopedia);
+
         Add = findViewById(R.id.buttonAdd);
-        btnPest1 = findViewById(R.id.btnPest1);
-        btnPest2 = findViewById(R.id.btnPest2);
-        btnPest3 = findViewById(R.id.btnPest3);
-        btnPest4 = findViewById(R.id.btnPest4);
-        btnBack = findViewById(R.id.btnBack);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Encyclopedia");
+        mPestList = findViewById(R.id.pest_list);
+        mPestList.setLayoutManager(new LinearLayoutManager(this));
+        mPestList.setHasFixedSize(true);
+        fetch();
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,45 +54,78 @@ public class Encyclopedia extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        btnPest1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Encyclopedia.this, encyclopediaDetail.class);
-                startActivity(intent);
-            }
-        });
-        btnPest2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Encyclopedia.this, encyclopediaDetail.class);
-                startActivity(intent);
-            }
-        });
-        btnPest3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Encyclopedia.this, encyclopediaDetail.class);
-                startActivity(intent);
-            }
-        });
-        btnPest4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Encyclopedia.this, encyclopediaDetail.class);
-                startActivity(intent);
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(Encyclopedia.this, Dashboard.class);
-                startActivity(intent);
-            }
-        });
     }
+
+    public class PestViewHolder extends RecyclerView.ViewHolder{
+        public TextView txtPestName;
+        public TextView txtPestType;
+        public LinearLayout root;
+
+        public PestViewHolder(@NonNull View itemView) {
+            super(itemView);
+            root = itemView.findViewById(R.id.list_root);
+            txtPestName = itemView.findViewById(R.id.post_pestName);
+            txtPestType = itemView.findViewById(R.id.post_pestType);
+        }
+        public void setName(String name){
+            txtPestName.setText(name);
+        }
+        public void setType(String type){
+            txtPestType.setText(type);
+        }
+
+    }
+    public void fetch(){
+        FirebaseRecyclerOptions<PestEncyclopedia> options = null;
+        try {
+             options =
+                    new FirebaseRecyclerOptions.Builder<PestEncyclopedia>().setQuery(mDatabase, new SnapshotParser<PestEncyclopedia>() {
+                        @NonNull
+                        @Override
+                        public PestEncyclopedia parseSnapshot(@NonNull DataSnapshot snapshot) {
+                            return new PestEncyclopedia(snapshot.child("name").getValue().toString(),
+                                    snapshot.child("type").getValue().toString()
+                            );
+                        }
+                    }).build();
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<PestEncyclopedia, PestViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull PestViewHolder holder, int position, @NonNull PestEncyclopedia model) {
+                holder.setName(model.getName());
+                holder.setType(model.getType());
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Encyclopedia.this,String.valueOf(position),Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public PestViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.pest_row, viewGroup, false);
+                return new PestViewHolder(view);
+            }
+        };
+        mPestList.setAdapter(firebaseRecyclerAdapter);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseRecyclerAdapter.startListening();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        firebaseRecyclerAdapter.stopListening();
+    }
+
 }
