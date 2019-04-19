@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 public class Encyclopedia extends AppCompatActivity
 {
@@ -59,6 +61,7 @@ public class Encyclopedia extends AppCompatActivity
     public class PestViewHolder extends RecyclerView.ViewHolder{
         public TextView txtPestName;
         public TextView txtPestType;
+        public ImageView ImgPestImage;
         public LinearLayout root;
 
         public PestViewHolder(@NonNull View itemView) {
@@ -66,12 +69,18 @@ public class Encyclopedia extends AppCompatActivity
             root = itemView.findViewById(R.id.list_root);
             txtPestName = itemView.findViewById(R.id.post_pestName);
             txtPestType = itemView.findViewById(R.id.post_pestType);
+            ImgPestImage = itemView.findViewById(R.id.post_pestImage);
+
         }
         public void setName(String name){
             txtPestName.setText(name);
         }
         public void setType(String type){
             txtPestType.setText(type);
+        }
+
+        public void setUrl(String url) {
+            Picasso.get().load(url).into(ImgPestImage);
         }
 
     }
@@ -84,7 +93,8 @@ public class Encyclopedia extends AppCompatActivity
                         @Override
                         public PestEncyclopedia parseSnapshot(@NonNull DataSnapshot snapshot) {
                             return new PestEncyclopedia(snapshot.child("name").getValue().toString(),
-                                    snapshot.child("type").getValue().toString()
+                                    snapshot.child("type").getValue().toString(),
+                                    snapshot.child("imageUrl").getValue().toString()
                             );
                         }
                     }).build();
@@ -99,6 +109,7 @@ public class Encyclopedia extends AppCompatActivity
             protected void onBindViewHolder(@NonNull PestViewHolder holder, int position, @NonNull PestEncyclopedia model) {
                 holder.setName(model.getName());
                 holder.setType(model.getType());
+                holder.setUrl(model.getImageUrl());
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

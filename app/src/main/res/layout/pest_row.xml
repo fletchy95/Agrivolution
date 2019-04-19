@@ -18,6 +18,13 @@
         <!--android:scaleType="centerCrop"-->
         <!--app:srcCompat="@mipmap/add_btn" />-->
 
+        <ImageView
+            android:id="@+id/post_pestImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:srcCompat="@mipmap/add_pest_btn" />
+
         <TextView
             android:id="@+id/post_pestName"
             android:layout_width="match_parent"
