@@ -4,25 +4,31 @@ public class Ticket
 {
     private String farmName;
     private String farmAddress;
-    private String locationDetails;
+    private String farmArea;
+    private String farmState;
+    private String farmPin;
     private String ticketTitle;
     private String date;
     private String email;
     private String optionalContact;
     private String description;
     private String imageURL;
-    //private String userID;
-    public Ticket(String farmName, String farmAddress, String locationDetails, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL)
+    private String status;
+
+    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status)
     {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
-        this.locationDetails = locationDetails;
+        this.farmArea = farmArea;
+        this.farmState = farmState;
+        this.farmPin = farmPin;
         this.ticketTitle = ticketTitle;
         this.date = date;
         this.email = email;
         this.optionalContact = optionalContact;
         this.description = description;
         this.imageURL = imageURL;
+        this.status = status;
     }
 
     public String getFarmName() {
@@ -41,12 +47,28 @@ public class Ticket
         this.farmAddress = farmAddress;
     }
 
-    public String getLocationDetails() {
-        return locationDetails;
+    public String getFarmArea() {
+        return farmArea;
     }
 
-    public void setLocationDetails(String locationDetails) {
-        this.locationDetails = locationDetails;
+    public void setFarmArea(String farmArea) {
+        this.farmArea = farmArea;
+    }
+
+    public String getFarmState() {
+        return farmState;
+    }
+
+    public void setFarmState(String farmState) {
+        this.farmState = farmState;
+    }
+
+    public String getFarmPin() {
+        return farmPin;
+    }
+
+    public void setFarmPin(String farmPin) {
+        this.farmPin = farmPin;
     }
 
     public String getTicketTitle() {
@@ -96,12 +118,13 @@ public class Ticket
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-//    public String getUpdatedby() {
-//        return userID;
-//    }
-//
-//    public void setUpdatedBy(String farmName) {
-//        this.userID = userID;
-//    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String userID) {
+        this.status = status;
+    }
 
 }

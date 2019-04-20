@@ -35,8 +35,10 @@ public class SubmitIssue extends AppCompatActivity
     ImageButton ticketImgBtn;
     EditText description;
     EditText farmName;
-    EditText farmAddress;
-    EditText locationDetail;
+    EditText farmAdd;
+    EditText farmArea;
+    EditText farmState;
+    EditText farmZip;
     EditText ticketTitle;
     EditText optionalContact;
     EditText date;
@@ -47,9 +49,11 @@ public class SubmitIssue extends AppCompatActivity
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imgUpload;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
-    private String tFramName;
+    private String tFarmName;
     private String tFarmAdd;
-    private String tLoc;
+    private String tfarmArea;
+    private String tfarmState;
+    private String tfarmPin;
     private String tDate;
     private String temail;
     private String tContact;
@@ -58,15 +62,19 @@ public class SubmitIssue extends AppCompatActivity
     private FirebaseAuth firebaseauthObj;
     private DatabaseReference mDatabase;
     private static final int GALLERY_REQUEST =1;
-
+    private String UserId;
+    private String ticketStatus = "Open";
     @TargetApi(23)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_ticket);
         setupUIViews();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets");
+
+        firebaseauthObj = FirebaseAuth.getInstance();
+        UserId = firebaseauthObj.getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets").child(UserId);
         tDialog = new ProgressDialog(this);
 
         ticketImgBtn.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +149,7 @@ public class SubmitIssue extends AppCompatActivity
                             Uri downloadUri = uri;
                             String imageUrl = downloadUri.toString();
                             DatabaseReference newTicket = mDatabase.push();
-                            Ticket ticket = new Ticket(tFramName,tFarmAdd,tLoc,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl);
+                            Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus);
                             newTicket.setValue(ticket);
                             tDialog.dismiss();
                             Toast.makeText(SubmitIssue.this,"New Ticket Submitted!",Toast.LENGTH_SHORT).show();
@@ -186,8 +194,10 @@ public class SubmitIssue extends AppCompatActivity
         imgUpload = findViewById(R.id.ImgUpload);
         ticketImgBtn = findViewById(R.id.imageSelect_ticket);
         farmName = findViewById(R.id.farmName);
-        farmAddress = findViewById(R.id.farmAddress);
-        locationDetail = findViewById(R.id.locationDetail);
+        farmAdd = findViewById(R.id.farmAddress);
+        farmArea= findViewById(R.id.farmArea);
+        farmState= findViewById(R.id.farmState);
+        farmZip = findViewById(R.id.farmPin);
         ticketTitle = findViewById(R.id.ticketTitle);
         date = findViewById(R.id.date);
         email = findViewById(R.id.email);
@@ -196,9 +206,11 @@ public class SubmitIssue extends AppCompatActivity
     }
     private boolean validate()
     {
-        tFramName = farmName.getText().toString();
-        tFarmAdd = farmAddress.getText().toString();
-        tLoc = locationDetail.getText().toString();
+        tFarmName = farmName.getText().toString();
+        tFarmAdd = farmAdd.getText().toString();
+        tfarmArea= farmArea.getText().toString();
+        tfarmState = farmState.getText().toString();
+        tfarmPin = farmZip.getText().toString();
         tTicketTitle = ticketTitle.getText().toString();
         tDate = date.getText().toString();
         temail = email.getText().toString();
@@ -206,7 +218,7 @@ public class SubmitIssue extends AppCompatActivity
         tDesc = description.getText().toString();
 
 
-        if (tFramName.isEmpty() || tFarmAdd.isEmpty() || tTicketTitle.isEmpty() || tDate.isEmpty() || tDesc.isEmpty()) {
+        if (tFarmName.isEmpty() || tFarmAdd.isEmpty() || tTicketTitle.isEmpty() || tDate.isEmpty() || tDesc.isEmpty() || tfarmPin.isEmpty()) {
             return false;
         }else{
             return true;

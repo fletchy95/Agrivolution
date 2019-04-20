@@ -33,12 +33,27 @@
             android:hint="Farm Address"
             android:inputType="textPersonName" />
         <EditText
-            android:id="@+id/locationDetail"
+            android:id="@+id/farmArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Location Details (if needed)"
+            android:hint="Farm Area"
             android:inputType="textPersonName" />
+        <EditText
+            android:id="@+id/farmState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Farm State"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/farmPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Zip Code"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/ticketTitle"
@@ -69,7 +84,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Phone"
-            android:inputType="" />
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/description"
