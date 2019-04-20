@@ -24,8 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class TicketPage extends AppCompatActivity
 {
@@ -47,7 +47,6 @@ public class TicketPage extends AppCompatActivity
         mTicketList.setLayoutManager(new LinearLayoutManager(this));
         mTicketList.setHasFixedSize(true);
         fetch();
-
     }
     public class TicketViewHolder extends RecyclerView.ViewHolder{
         public TextView txtTicketTitle;
@@ -71,6 +70,19 @@ public class TicketPage extends AppCompatActivity
             txtStatus = itemView.findViewById(R.id.ticket_status);
             ImgTicketImage = itemView.findViewById(R.id.ticket_pestImage);
             BtnCloseTicket = itemView.findViewById(R.id.close_ticket);
+
+
+            BtnCloseTicket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try{
+                        mDatabase.child(Key).child("status").setValue("Closed");
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
 
         public void setTitle(String title){
@@ -94,7 +106,6 @@ public class TicketPage extends AppCompatActivity
         public void setUrl(String url) {
             Picasso.get().load(url).into(ImgTicketImage);
         }
-
     }
     public void fetch(){
         FirebaseRecyclerOptions<Ticket> options = null;
@@ -130,6 +141,9 @@ public class TicketPage extends AppCompatActivity
                 holder.setStatus(model.getStatus());
                 holder.setUrl(model.getImageURL());
                 holder.setKey(model.getKey());
+                if(model.getStatus().equals("closed")){
+                holder.BtnCloseTicket.setVisibility(View.GONE);
+            }
 
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
