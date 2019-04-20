@@ -54,6 +54,7 @@ public class Encyclopedia extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(Encyclopedia.this, addEncyclopediaData.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -63,6 +64,7 @@ public class Encyclopedia extends AppCompatActivity
         public TextView txtPestType;
         public ImageView ImgPestImage;
         public LinearLayout root;
+        public String Key;
 
         public PestViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,12 +73,21 @@ public class Encyclopedia extends AppCompatActivity
             txtPestType = itemView.findViewById(R.id.post_pestType);
             ImgPestImage = itemView.findViewById(R.id.post_pestImage);
 
+            ImgPestImage.setOnClickListener(v -> {
+                Intent intent = new Intent(Encyclopedia.this, encyclopediaDetail.class);
+                String key = mDatabase.child("Encyclopedia").push().getKey();
+                intent.putExtra("Key",Key);
+                startActivity(intent);
+            });
         }
         public void setName(String name){
             txtPestName.setText(name);
         }
         public void setType(String type){
             txtPestType.setText(type);
+        }
+        public void setKey(String key){
+            Key = key;
         }
 
         public void setUrl(String url) {
@@ -94,7 +105,8 @@ public class Encyclopedia extends AppCompatActivity
                         public PestEncyclopedia parseSnapshot(@NonNull DataSnapshot snapshot) {
                             return new PestEncyclopedia(snapshot.child("name").getValue().toString(),
                                     snapshot.child("type").getValue().toString(),
-                                    snapshot.child("imageUrl").getValue().toString()
+                                    snapshot.child("imageUrl").getValue().toString(),
+                                    snapshot.getKey()
                             );
                         }
                     }).build();
@@ -110,6 +122,7 @@ public class Encyclopedia extends AppCompatActivity
                 holder.setName(model.getName());
                 holder.setType(model.getType());
                 holder.setUrl(model.getImageUrl());
+                holder.setKey(model.getKey());
                 holder.root.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -138,5 +151,4 @@ public class Encyclopedia extends AppCompatActivity
         super.onStop();
         firebaseRecyclerAdapter.stopListening();
     }
-
 }

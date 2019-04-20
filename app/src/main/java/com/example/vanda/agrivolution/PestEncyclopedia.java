@@ -12,14 +12,16 @@ public class PestEncyclopedia {
     private String BiologicalControl;
     private String ChemicalControl;
     private String ImageUrl;
+    private String Key;
 
     public PestEncyclopedia(){
 
     }
-    public PestEncyclopedia(String pestName, String PestType, String url){
+    public PestEncyclopedia(String pestName, String PestType, String url, String key){
         Name = pestName;
         Type = PestType;
         ImageUrl = url;
+        Key = key;
     }
     public PestEncyclopedia(String pestName, String PestType, String PestHost, String PestDesc, String PestSymptom, String PestTrigger, String PestPrevMeasure, String PestBioControl, String PestChemControl, String PestUrl){
         Name = pestName;
@@ -108,5 +110,9 @@ public class PestEncyclopedia {
     public void setImageUrl(String PestUrl) {
         ImageUrl = PestUrl;
     }
+    public void setKey(String key) {Key = key;}
 
+    public String getKey() {
+        return Key;
+    }
 }
