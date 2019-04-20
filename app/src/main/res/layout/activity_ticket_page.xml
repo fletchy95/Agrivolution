@@ -6,6 +6,16 @@
     android:orientation="vertical"
     tools:context=".TicketPage">
 
+    <TextView
+        android:id="@+id/tv_display"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="No Tickets Created !"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
