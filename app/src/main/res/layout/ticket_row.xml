@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <LinearLayout
+        android:id="@+id/list_troot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ticket_pestImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/ticket_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Title"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ticket_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Description"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/ticket_farmName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Farm name"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/ticket_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:text="Posted On"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ticket_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:text="Status"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/close_ticket"
+            android:layout_width="174dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="Close Ticket" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
