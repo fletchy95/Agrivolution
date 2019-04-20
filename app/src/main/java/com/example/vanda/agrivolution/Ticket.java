@@ -14,6 +14,20 @@ public class Ticket
     private String description;
     private String imageURL;
     private String status;
+    private String Key;
+
+    public Ticket(){
+
+    }
+    public Ticket(String ticketTitle,String description,String farmName,String date,String status, String url, String key){
+        this.ticketTitle = ticketTitle;
+        this.description = description;
+        this.farmName = farmName;
+        this.date = date;
+        this.status = status;
+        this.imageURL = url;
+        this.Key = key;
+    }
 
     public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status)
     {
@@ -125,6 +139,11 @@ public class Ticket
 
     public void setStatus(String userID) {
         this.status = status;
+    }
+    public void setKey(String key) {Key = key;}
+
+    public String getKey() {
+        return Key;
     }
 
 }
