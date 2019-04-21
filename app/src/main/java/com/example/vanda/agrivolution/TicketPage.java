@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.app.ListActivity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +43,7 @@ public class TicketPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_page);
         Display = findViewById(R.id.tv_display);
+        Display.setVisibility(View.GONE);
         firebaseauthObj = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseauthObj.getCurrentUser();
         userID = user.getUid();
@@ -51,8 +51,8 @@ public class TicketPage extends AppCompatActivity
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(!(dataSnapshot.getValue()==null)){
-                        Display.setVisibility(View.GONE);
+                    if((dataSnapshot.getValue()==null)){
+                        Display.setVisibility(View.VISIBLE);
                     }
             }
             @Override
@@ -103,7 +103,7 @@ public class TicketPage extends AppCompatActivity
         }
 
         public void setTitle(String title){
-            txtTicketTitle.setText("Ticket Title: "+title);
+            txtTicketTitle.setText(title);
         }
         public void setDesc(String desc){
             txtTicketDescription.setText("Description: "+desc);
