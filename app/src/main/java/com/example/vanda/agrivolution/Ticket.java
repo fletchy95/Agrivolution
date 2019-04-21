@@ -30,7 +30,18 @@ public class Ticket
         this.imageURL = url;
         this.Key = key;
     }
-
+    public Ticket(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String key){
+        this.ticketTitle = ticketTitle;
+        this.description = description;
+        this.farmName = farmName;
+        this.farmArea = farmArea;
+        this.farmState = farmState;
+        this.date = date;
+        this.status = status;
+        this.postedBy = name;
+        this.imageURL = url;
+        this.Key = key;
+    }
     public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name)
     {
         this.farmName = farmName;
