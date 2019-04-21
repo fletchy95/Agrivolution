@@ -20,8 +20,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -63,6 +66,7 @@ public class SubmitIssue extends AppCompatActivity
     private DatabaseReference mDatabase;
     private static final int GALLERY_REQUEST =1;
     private String UserId;
+    private String tname;
     private String ticketStatus = "Open";
     @TargetApi(23)
     @Override
@@ -74,6 +78,20 @@ public class SubmitIssue extends AppCompatActivity
         firebaseauthObj = FirebaseAuth.getInstance();
         UserId = firebaseauthObj.getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(UserId);
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fname = dataSnapshot.child("firstName").getValue().toString();
+                String lname = dataSnapshot.child("lastName").getValue().toString();
+                tname = fname.concat(" ").concat(lname);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets").child(UserId);
         tDialog = new ProgressDialog(this);
 
@@ -149,7 +167,7 @@ public class SubmitIssue extends AppCompatActivity
                             Uri downloadUri = uri;
                             String imageUrl = downloadUri.toString();
                             DatabaseReference newTicket = mDatabase.push();
-                            Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus);
+                            Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus, tname);
                             newTicket.setValue(ticket);
                             tDialog.dismiss();
                             Toast.makeText(SubmitIssue.this,"New Ticket Submitted!",Toast.LENGTH_SHORT).show();

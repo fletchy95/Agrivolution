@@ -15,10 +15,12 @@ public class Ticket
     private String imageURL;
     private String status;
     private String Key;
+    private String postedBy;
 
     public Ticket(){
 
     }
+
     public Ticket(String ticketTitle,String description,String farmName,String date,String status, String url, String key){
         this.ticketTitle = ticketTitle;
         this.description = description;
@@ -43,6 +45,7 @@ public class Ticket
         this.description = description;
         this.imageURL = imageURL;
         this.status = status;
+        this.postedBy = name;
     }
 
     public String getFarmName() {
@@ -144,6 +147,11 @@ public class Ticket
 
     public String getKey() {
         return Key;
+    }
+    public void setPostedBy(String name) {postedBy = name;}
+
+    public String getPostedBy() {
+        return postedBy;
     }
 
 }
