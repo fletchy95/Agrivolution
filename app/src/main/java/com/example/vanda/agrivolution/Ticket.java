@@ -31,7 +31,7 @@ public class Ticket
         this.Key = key;
     }
 
-    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status)
+    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name)
     {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
