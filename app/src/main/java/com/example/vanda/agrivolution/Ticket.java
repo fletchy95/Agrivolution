@@ -16,6 +16,7 @@ public class Ticket
     private String status;
     private String Key;
     private String postedBy;
+    private String userId;
 
     public Ticket(){
 
@@ -42,7 +43,7 @@ public class Ticket
         this.imageURL = url;
         this.Key = key;
     }
-    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name)
+    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name, String UserId)
     {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
@@ -57,6 +58,7 @@ public class Ticket
         this.imageURL = imageURL;
         this.status = status;
         this.postedBy = name;
+        this.userId = UserId;
     }
 
     public String getFarmName() {
@@ -163,6 +165,11 @@ public class Ticket
 
     public String getPostedBy() {
         return postedBy;
+    }
+    public void setUserId(String id) {this.userId = id;}
+
+    public String getUserId() {
+        return userId;
     }
 
 }

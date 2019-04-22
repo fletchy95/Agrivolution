@@ -167,7 +167,7 @@ public class SubmitIssue extends AppCompatActivity
                             Uri downloadUri = uri;
                             String imageUrl = downloadUri.toString();
                             DatabaseReference newTicket = mDatabase.push();
-                            Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus, tname);
+                            Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus, tname,UserId);
                             newTicket.setValue(ticket);
                             tDialog.dismiss();
                             Toast.makeText(SubmitIssue.this,"New Ticket Submitted!",Toast.LENGTH_SHORT).show();
