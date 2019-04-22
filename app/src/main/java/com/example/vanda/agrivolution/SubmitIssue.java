@@ -64,6 +64,7 @@ public class SubmitIssue extends AppCompatActivity
     private String tTicketTitle;
     private FirebaseAuth firebaseauthObj;
     private DatabaseReference mDatabase;
+    private DatabaseReference BlogDatabase;
     private static final int GALLERY_REQUEST =1;
     private String UserId;
     private String tname;
@@ -78,6 +79,7 @@ public class SubmitIssue extends AppCompatActivity
         firebaseauthObj = FirebaseAuth.getInstance();
         UserId = firebaseauthObj.getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
+        BlogDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(UserId);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -167,8 +169,11 @@ public class SubmitIssue extends AppCompatActivity
                             Uri downloadUri = uri;
                             String imageUrl = downloadUri.toString();
                             DatabaseReference newTicket = mDatabase.push();
+                            String pushedKey = newTicket.getKey();
                             Ticket ticket = new Ticket(tFarmName,tFarmAdd,tfarmArea,tfarmState,tfarmPin,tTicketTitle,tDate,temail,tContact,tDesc, imageUrl, ticketStatus, tname,UserId);
                             newTicket.setValue(ticket);
+                            DatabaseReference newBlog = BlogDatabase.child(pushedKey);
+                            newBlog.setValue(ticket);
                             tDialog.dismiss();
                             Toast.makeText(SubmitIssue.this,"New Ticket Submitted!",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SubmitIssue.this,Dashboard.class));
