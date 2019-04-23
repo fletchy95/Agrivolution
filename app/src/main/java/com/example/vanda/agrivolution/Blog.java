@@ -16,7 +16,7 @@ public class Blog {
     public Blog(){
 
     }
-    public Blog(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String key, String id){
+    public Blog(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String id,String key){
         this.ticketTitle = ticketTitle;
         this.description = description;
         this.farmName = farmName;

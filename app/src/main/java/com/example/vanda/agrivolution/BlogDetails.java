@@ -109,12 +109,17 @@ public class BlogDetails extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     tComment = edtComment.getText().toString();
-                    CommentDb = FirebaseDatabase.getInstance().getReference().child("Comments").child(TicketId);
-                    DatabaseReference newComment = CommentDb.push();
-                    Comments c = new Comments(tComment,postedBy,UserId);
-                    newComment.setValue(c);
-                    Toast.makeText(BlogDetails.this,"New Comment Added!",Toast.LENGTH_SHORT).show();
-                    edtComment.setText("");
+                    if(!(tComment.isEmpty())){
+                        CommentDb = FirebaseDatabase.getInstance().getReference().child("Comments").child(TicketId);
+                        DatabaseReference newComment = CommentDb.push();
+                        Comments c = new Comments(tComment,postedBy,UserId);
+                        newComment.setValue(c);
+                        Toast.makeText(BlogDetails.this,"New Comment Added!",Toast.LENGTH_SHORT).show();
+                        edtComment.setText("");
+                    }else{
+                        Toast.makeText(BlogDetails.this,"Comment field is empty!",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         }
