@@ -1,14 +1,12 @@
 package com.example.vanda.agrivolution;
-
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,15 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class blogPage extends AppCompatActivity {
+public class BlogDetails extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     private RecyclerView mBlogList;
-    private String userID;
-    private FirebaseAuth firebaseauthObj;
+    //  private String userID;
+    // private FirebaseAuth firebaseauthObj;
     private TextView Display;
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -42,10 +37,10 @@ public class blogPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_page);
         Display = findViewById(R.id.tv_displayContent);
-        firebaseauthObj = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseauthObj.getCurrentUser();
-        userID = user.getUid();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets").child(userID);
+//        firebaseauthObj = FirebaseAuth.getInstance();
+//        FirebaseUser user = firebaseauthObj.getCurrentUser();
+//        userID = user.getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -73,6 +68,7 @@ public class blogPage extends AppCompatActivity {
         public ImageView ImgBlogImage;
         public LinearLayout root;
         public String Key;
+        public String userID;
 
         public BlogViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,16 +107,17 @@ public class blogPage extends AppCompatActivity {
         public void setUrl(String url) {
             Picasso.get().load(url).into(ImgBlogImage);
         }
+        public void setUserID(String id){ userID = id;}
     }
     public void fetch(){
-        FirebaseRecyclerOptions<Ticket> options = null;
+        FirebaseRecyclerOptions<Blog> options = null;
         try {
             options =
-                    new FirebaseRecyclerOptions.Builder<Ticket>().setQuery(mDatabase, new SnapshotParser<Ticket>() {
+                    new FirebaseRecyclerOptions.Builder<Blog>().setQuery(mDatabase, new SnapshotParser<Blog>() {
                         @NonNull
                         @Override
-                        public Ticket parseSnapshot(@NonNull DataSnapshot snapshot) {
-                            return new Ticket(snapshot.child("ticketTitle").getValue().toString(),
+                        public Blog parseSnapshot(@NonNull DataSnapshot snapshot) {
+                            return new Blog(snapshot.child("ticketTitle").getValue().toString(),
                                     snapshot.child("description").getValue().toString(),
                                     snapshot.child("farmName").getValue().toString(),
                                     snapshot.child("farmArea").getValue().toString(),
@@ -129,6 +126,7 @@ public class blogPage extends AppCompatActivity {
                                     snapshot.child("status").getValue().toString(),
                                     snapshot.child("postedBy").getValue().toString(),
                                     snapshot.child("imageURL").getValue().toString(),
+                                    snapshot.child("userId").getValue().toString(),
                                     snapshot.getKey()
                             );
                         }
@@ -138,32 +136,33 @@ public class blogPage extends AppCompatActivity {
             System.out.println(e);
         }
 
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Ticket, blogPage.BlogViewHolder>(options) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, BlogDetails.BlogViewHolder>(options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull blogPage.BlogViewHolder holder, int position, @NonNull Ticket model) {
-                    holder.setTitle(model.getTicketTitle());
-                    holder.setDesc(model.getDescription());
-                    holder.setLocation(model.getFarmName(),model.getFarmArea(),model.getFarmState());
-                    holder.setDate(model.getDate());
-                    holder.setStatus(model.getStatus());
-                    holder.setPostedBy(model.getPostedBy());
-                    holder.setUrl(model.getImageURL());
-                    holder.setKey(model.getKey());
+            protected void onBindViewHolder(@NonNull BlogDetails.BlogViewHolder holder, int position, @NonNull Blog model) {
+                holder.setTitle(model.getTicketTitle());
+                holder.setDesc(model.getDescription());
+                holder.setLocation(model.getFarmName(),model.getFarmArea(),model.getFarmState());
+                holder.setDate(model.getDate());
+                holder.setStatus(model.getStatus());
+                holder.setPostedBy(model.getPostedBy());
+                holder.setUrl(model.getImageURL());
+                holder.setKey(model.getKey());
+                holder.setUserID(model.getUserId());
 
-                    holder.root.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(blogPage.this,String.valueOf(position),Toast.LENGTH_LONG).show();
-                        }
-                    });
+                holder.root.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(BlogDetails.this,String.valueOf(position),Toast.LENGTH_LONG).show();
+                    }
+                });
             }
             @NonNull
             @Override
-            public blogPage.BlogViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            public BlogDetails.BlogViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 View view = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.blog_row, viewGroup, false);
-                return new blogPage.BlogViewHolder(view);
+                return new BlogViewHolder(view);
             }
         };
         mBlogList.setAdapter(firebaseRecyclerAdapter);
