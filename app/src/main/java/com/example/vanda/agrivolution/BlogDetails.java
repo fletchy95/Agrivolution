@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +27,14 @@ import com.squareup.picasso.Picasso;
 
 public class BlogDetails extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    private DatabaseReference UserDb;
+    private DatabaseReference CommentDb;
+    private FirebaseAuth firebaseauthObj;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     private RecyclerView mBlogList;
+    private String tComment;
+    private String UserId;
+    private String postedBy;
 
     private TextView Display;
     @Override
@@ -35,6 +42,21 @@ public class BlogDetails extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog_details);
+        firebaseauthObj = FirebaseAuth.getInstance();
+        UserId = firebaseauthObj.getUid();
+        UserDb = FirebaseDatabase.getInstance().getReference().child("User").child(UserId);
+        UserDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String fname = dataSnapshot.child("firstName").getValue().toString();
+                String lname = dataSnapshot.child("lastName").getValue().toString();
+                postedBy = fname.concat(" ").concat(lname);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         Display = findViewById(R.id.tv_displayContent);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -65,7 +87,7 @@ public class BlogDetails extends AppCompatActivity {
         public EditText edtComment;
         public Button btnPostComment;
         public LinearLayout root;
-        public String Key;
+        public String TicketId;
         public String userID;
 
         public BlogViewHolder(@NonNull View itemView) {
@@ -81,6 +103,20 @@ public class BlogDetails extends AppCompatActivity {
             ImgBlogImage = itemView.findViewById(R.id.blog_pestImage);
             edtComment = itemView.findViewById(R.id.blog_comments);
             btnPostComment = itemView.findViewById(R.id.blog_postComment);
+
+
+            btnPostComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tComment = edtComment.getText().toString();
+                    CommentDb = FirebaseDatabase.getInstance().getReference().child("Comments").child(TicketId);
+                    DatabaseReference newComment = CommentDb.push();
+                    Comments c = new Comments(tComment,postedBy,UserId);
+                    newComment.setValue(c);
+                    Toast.makeText(BlogDetails.this,"New Comment Added!",Toast.LENGTH_SHORT).show();
+                    edtComment.setText("");
+                }
+            });
         }
 
         public void setTitle(String title){
@@ -102,7 +138,7 @@ public class BlogDetails extends AppCompatActivity {
             txtStatus.setText("Status: "+status);
         }
         public void setKey(String key){
-            Key = key;
+            TicketId = key;
         }
         public void setUrl(String url) {
             Picasso.get().load(url).into(ImgBlogImage);
