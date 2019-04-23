@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 public class TicketPage extends AppCompatActivity
 {
     private DatabaseReference mDatabase;
+    private DatabaseReference BlogDatabase;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     private RecyclerView mTicketList;
     private String userID;
@@ -45,6 +46,7 @@ public class TicketPage extends AppCompatActivity
         FirebaseUser user = firebaseauthObj.getCurrentUser();
         userID = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Tickets").child(userID);
+        BlogDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,7 +93,7 @@ public class TicketPage extends AppCompatActivity
                 public void onClick(View v) {
                     try{
                         mDatabase.child(Key).child("status").setValue("Closed");
-
+                        BlogDatabase.child(Key).child("status").setValue("Closed");
                     }catch (Exception e){
                         e.printStackTrace();
                     }

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,8 +17,6 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,18 +28,14 @@ public class BlogDetails extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
     private RecyclerView mBlogList;
-    //  private String userID;
-    // private FirebaseAuth firebaseauthObj;
+
     private TextView Display;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blog_page);
+        setContentView(R.layout.activity_blog_details);
         Display = findViewById(R.id.tv_displayContent);
-//        firebaseauthObj = FirebaseAuth.getInstance();
-//        FirebaseUser user = firebaseauthObj.getCurrentUser();
-//        userID = user.getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Blog");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -66,6 +62,8 @@ public class BlogDetails extends AppCompatActivity {
         public TextView txtPostedBy;
         public TextView txtStatus;
         public ImageView ImgBlogImage;
+        public EditText edtComment;
+        public Button btnPostComment;
         public LinearLayout root;
         public String Key;
         public String userID;
@@ -81,6 +79,8 @@ public class BlogDetails extends AppCompatActivity {
             txtDate = itemView.findViewById(R.id.blog_date);
             txtStatus = itemView.findViewById(R.id.blog_status);
             ImgBlogImage = itemView.findViewById(R.id.blog_pestImage);
+            edtComment = itemView.findViewById(R.id.blog_comments);
+            btnPostComment = itemView.findViewById(R.id.blog_postComment);
         }
 
         public void setTitle(String title){

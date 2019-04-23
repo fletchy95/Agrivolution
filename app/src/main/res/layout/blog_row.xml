@@ -64,5 +64,25 @@
             android:text="Status"
             android:textSize="16sp" />
 
+        <EditText
+            android:id="@+id/blog_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Enter Comment"
+            android:inputType="textMultiLine"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+
+        <Button
+            android:id="@+id/blog_postComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Post Comment" />
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
