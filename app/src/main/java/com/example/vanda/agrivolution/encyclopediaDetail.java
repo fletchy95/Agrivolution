@@ -23,6 +23,7 @@ public class encyclopediaDetail extends AppCompatActivity {
     private TextView PestHost;
     private TextView PestDesc;
     private TextView PestSymptoms;
+    private TextView PestTrigger;
     private TextView PestPrevMeasure;
     private TextView PestBioControl;
     private TextView PestChemControl;
@@ -50,6 +51,7 @@ public class encyclopediaDetail extends AppCompatActivity {
                 PestHost.setText("Hosts: "+pest.getHost());
                 PestDesc.setText("Description"+pest.getDescription());
                 PestSymptoms.setText("Symptoms: "+pest.getSymptom());
+                PestTrigger.setText("Trigger"+pest.getTrigger());
                 PestPrevMeasure.setText("Preventive Measures: "+pest.getPreventiveMeasure());
                 PestBioControl.setText("Biological Control: "+pest.getBiologicalControl());
                 PestChemControl.setText(("Chemical Control: "+pest.getChemicalControl()));
@@ -69,6 +71,7 @@ public class encyclopediaDetail extends AppCompatActivity {
         PestHost = findViewById(R.id.PestHostView);
         PestDesc = findViewById(R.id.PestDescView);
         PestSymptoms = findViewById(R.id.PestSymptomsView);
+        PestTrigger = findViewById(R.id.PestTriggerView);
         PestPrevMeasure = findViewById(R.id.PestTriggerView);
         PestBioControl = findViewById(R.id.PestBioView);
         PestChemControl = findViewById(R.id.PestChemView);
