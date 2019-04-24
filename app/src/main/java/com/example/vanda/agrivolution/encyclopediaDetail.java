@@ -72,7 +72,7 @@ public class encyclopediaDetail extends AppCompatActivity {
         PestDesc = findViewById(R.id.PestDescView);
         PestSymptoms = findViewById(R.id.PestSymptomsView);
         PestTrigger = findViewById(R.id.PestTriggerView);
-        PestPrevMeasure = findViewById(R.id.PestTriggerView);
+        PestPrevMeasure = findViewById(R.id.PestPrevMeasureView);
         PestBioControl = findViewById(R.id.PestBioView);
         PestChemControl = findViewById(R.id.PestChemView);
 
