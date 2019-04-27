@@ -1,69 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Radius"
-            android:onClick="changeRadius" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Gradient"
-            android:onClick="changeGradient" />
-
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Opacity"
-            android:onClick="changeOpacity" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <Spinner
-            android:id="@+id/spinner_s"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spinner_yr"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        tools:context=".HeatmapActivity"/>
-
-</LinearLayout>
+<resources>
+    <string name="app_name">Agrivolution</string>
+    <string name="community">Community</string>
+    <string name="shop_for_products">Shop for Products</string>
+    <string name="submit_an_issue">Submit an Issue</string>
+    <string name="heat_map">Heat Map</string>
+    <string name="encyclopedia">Encyclopedia</string>
+    <string name="logout">Logout</string>
+    <string name="accountinfo">accountInfo</string>
+    <string name="type_insect_virus_other1" />
+    <string name="all_pathogens" />
+    <string name="name" />
+    <string name="add" />
+    <string name="imgbtnpest1" />
+    <string name="imgbtnpest2" />
+    <string name="home" />
+    <string name="library" />
+    <string name="comminity" />
+    <string name="preventive_measure">Preventive Measure</string>
+    <string name="biological_control">Biological Control</string>
+    <string name="chemical_control">Chemical Control</string>
+    <string name="attachment">Attachment</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="trigger">Trigger</string>
+    <string name="hosts">Hosts</string>
+    <string name="pest1">Pest1</string>
+    <string name="type">Type</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="description">Description</string>
+    <string name="uploaded_image_from_camera">Uploaded Image from Camera</string>
+    <string name="submit_issue">Submit Issue</string>
+    <string name="cancel_ticket">Cancel Ticket</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="hypothesis">Hypothesis</string>
+    <string name="damage_estimation">Damage Estimation</string>
+    <string name="farm_address">Farm Address</string>
+    <string name="farm_name">Farm Name</string>
+    <string-array name="type">
+        <item>Select User Type</item>
+        <item>Farmer</item>
+        <item>Expert</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="input_text">Looking for…</string>
+    <string name="button_send">Go!</string>
+    <string name="whiteflies">whiteflies</string>
+    <string name="brown_stink_bug">brown_stink_bug</string>
+    <string name="spring">spring</string>
+    <string name="summer">summer</string>
+    <string name="fall">fall</string>
+    <string name="winter">winter</string>
+    <string name="yr2019">yr2019</string>
+    <string name="yr2018">yr2018</string>
+    <string name="yr2017">yr2017</string>
+    <string name="yr2016">yr2016</string>
+    <string name="yr2015">yr2015</string>
+    <string name="attrib_format">Data from &lt;a href = "%s">data.agri.us&lt;/a>, modified under &lt;a href = \"http://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 US&lt;/a></string>
+    <string name="whiteflies_url">http://data.agri.us</string>
+    <string name="brown_stink_bug_url">http://data.agri.us</string>
+    <string name="spring_url">http://data.agri.us</string>
+    <string name="summer_url">http://data.agri.us</string>
+    <string name="fall_url">http://data.agri.us</string>
+    <string name="winter_url">http://data.agri.us</string>
+    <string name="yr2019_url">http://data.agri.us</string>
+    <string name="yr2018_url">http://data.agri.us</string>
+    <string name="yr2017_url">http://data.agri.us</string>
+    <string name="yr2016_url">http://data.agri.us</string>
+    <string name="yr2015_url">http://data.agri.us</string>
+    <string name="geojson_url">https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson</string>
+    <string-array name="heatmaps_array_season">
+        <item>@string/spring</item>
+        <item>@string/summer</item>
+        <item>@string/fall</item>
+        <item>@string/winter</item>
+    </string-array>
+    <string-array name="heatmaps_array_yr">
+        <item>@string/yr2019</item>
+        <item>@string/yr2018</item>
+        <item>@string/yr2017</item>
+        <item>@string/yr2016</item>
+        <item>@string/yr2015</item>
+    </string-array>
+    <string-array name="heatmaps_datasets_array">
+        <item>@string/whiteflies</item>
+        <item>@string/brown_stink_bug</item>
+    </string-array>
+    <string name="button_radius">Radius</string>
+    <string name="button_gradient">Gradient</string>
+    <string name="button_opacity">Opacity</string>
+    <string name="where_would_you_like_to_go">Where would you like to go?</string>
+</resources>
