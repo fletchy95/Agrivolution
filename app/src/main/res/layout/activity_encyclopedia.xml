@@ -1,228 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Encyclopedia">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="389dp"
-        android:layout_height="32dp"
-
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:background="@drawable/textbutton_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="80dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="166dp"
-        android:layout_marginLeft="166dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="165dp"
-        android:layout_marginRight="165dp"
-        android:background="@drawable/textbutton_background"
-        android:text="add+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <ImageButton
-        android:id="@+id/btnPest1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="88dp"
-        android:contentDescription="@string/imgbtnpest1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:srcCompat="@drawable/pest1" />
-
-    <Button
-        android:id="@+id/ButtonName"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <Button
-        android:id="@+id/ButtonType"
-        android:layout_width="211dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="type_insect_virus_other1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-    <ImageButton
-        android:id="@+id/btnPest2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/imgbtnpest2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPest1"
-        app:srcCompat="@drawable/pest2"
-        tools:srcCompat="@drawable/pest2" />
-
-    <Button
-        android:id="@+id/ButtonName2"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonName" />
-
-    <Button
-        android:id="@+id/ButtonType2"
-        android:layout_width="211dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="type_insect_virus_other1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonType3" />
-
-    <ImageButton
-        android:id="@+id/btnPest3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/imgbtnpest2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPest2"
-        app:srcCompat="@drawable/pest3"
-        tools:srcCompat="@drawable/pest3" />
-
-    <Button
-        android:id="@+id/ButtonName3"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonName2" />
-
-    <Button
-        android:id="@+id/ButtonType3"
-        android:layout_width="211dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="type_insect_virus_other1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonType" />
-
-    <ImageButton
-        android:id="@+id/btnPest4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/imgbtnpest2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPest3"
-        app:srcCompat="@drawable/pest4"
-        tools:srcCompat="@drawable/pest4" />
-
-    <Button
-        android:id="@+id/ButtonName4"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonName3" />
-
-    <Button
-        android:id="@+id/ButtonType4"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginRight="51dp"
-        android:background="@drawable/textbutton_background2"
-        android:text="type_insect_virus_other1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonType2" />
-
-    <Button
-        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginLeft="122dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
-        android:layout_marginBottom="4dp"
-        android:text="Back to Dashboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="Add"
+        android:layout_gravity="center"/>
 
-    <android.support.constraint.Constraints
-        android:id="@+id/constraints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pest_list">
+    </android.support.v7.widget.RecyclerView>
 
-    <android.support.constraint.Constraints
-        android:id="@+id/constraints2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.Constraints
-        android:id="@+id/constraints3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

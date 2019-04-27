@@ -66,9 +66,4 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:context=".HeatmapActivity"/>
 
-    <TextView
-        android:id="@+id/attribution"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
 </LinearLayout>

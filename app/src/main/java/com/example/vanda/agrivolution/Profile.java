@@ -33,51 +33,25 @@ public class Profile extends AppCompatActivity {
     private TextView profSpecialization;
 
     private String userID;
-
     private Button profUpdate;
 
     private FirebaseAuth firebaseauthObj;
-    private FirebaseDatabase firebasedatabaseObj;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        profilePic = findViewById(R.id.ivprofPic);
-        profFirstName = findViewById(R.id.tvfName);
-        profLastName = findViewById(R.id.tvlname);
-        profMobile = findViewById(R.id.tvMobile);
-        profEmail = findViewById(R.id.tvEmail);
-        profUserType = findViewById(R.id.tvUserType);
-        profFarmName = findViewById(R.id.tvFarmName);
-        profFarmAdd = findViewById(R.id.tvFarmAdd);
-        profYearsOfExp = findViewById(R.id.tvYoe);
-        profSpecialization = findViewById(R.id.tvSpec);
-        profUpdate =findViewById(R.id.btnEdit);
-
-    //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setupUIViews();
         firebaseauthObj = FirebaseAuth.getInstance();
-        firebasedatabaseObj = FirebaseDatabase.getInstance();
-        DatabaseReference databaseRefObj = firebasedatabaseObj.getReference();
         FirebaseUser user = firebaseauthObj.getCurrentUser();
         userID = user.getUid();
-       // DatabaseReference databaserefObj = firebasedatabaseObj.getReference(firebaseauthObj.getUid());
-        databaseRefObj.addValueEventListener(new ValueEventListener() {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("User").child(userID);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    UserProfile userProf = new UserProfile();
-                    userProf.setFirstName(ds.child(userID).getValue(UserProfile.class).getFirstName());
-                    userProf.setLastName(ds.child(userID).getValue(UserProfile.class).getLastName());
-                    userProf.setMobile(ds.child(userID).getValue(UserProfile.class).getMobile());
-                    userProf.setEmail(ds.child(userID).getValue(UserProfile.class).getEmail());
-                    userProf.setUserType(ds.child(userID).getValue(UserProfile.class).getUserType());
-                    userProf.setFarmName(ds.child(userID).getValue(UserProfile.class).getFarmName());
-                    userProf.setFarmAddress(ds.child(userID).getValue(UserProfile.class).getFarmAddress());
-                    userProf.setYearsOfExperience(ds.child(userID).getValue(UserProfile.class).getYearsOfExperience());
-                    userProf.setSpecialization(ds.child(userID).getValue(UserProfile.class).getSpecialization());
-
+                UserProfile userProf = dataSnapshot.getValue(UserProfile.class);
                     profFirstName.setText("First Name :" +userProf.getFirstName());
                     profLastName.setText("Last Name :"+ userProf.getLastName());
                     profMobile.setText("Mobile : "+userProf.getMobile());
@@ -109,7 +83,6 @@ public class Profile extends AppCompatActivity {
                         profSpecialization.setVisibility(View.GONE);
                         profYearsOfExp.setVisibility(View.GONE);
                     }
-                }
             }
 
             @Override
@@ -124,5 +97,19 @@ public class Profile extends AppCompatActivity {
                 startActivity(new Intent(Profile.this, UpdateProfile.class));
             }
         });
+    }
+    private void setupUIViews(){
+        profilePic = findViewById(R.id.ivprofPic);
+        profFirstName = findViewById(R.id.tvfName);
+        profLastName = findViewById(R.id.tvlname);
+        profMobile = findViewById(R.id.tvMobile);
+        profEmail = findViewById(R.id.tvEmail);
+        profUserType = findViewById(R.id.tvUserType);
+        profFarmName = findViewById(R.id.tvFarmName);
+        profFarmAdd = findViewById(R.id.tvFarmAdd);
+        profYearsOfExp = findViewById(R.id.tvYoe);
+        profSpecialization = findViewById(R.id.tvSpec);
+        profUpdate =findViewById(R.id.btnEdit);
+
     }
 }

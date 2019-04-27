@@ -41,47 +41,12 @@ import java.util.Scanner;
  * create a colored map overlay that visualises many points of weighted importance/intensity, with
  * different colors representing areas of high and low concentration/combined intensity of points.
  */
-public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class HeatmapActivity extends BaseDemoActivity {
 
-    private static GoogleMap mMap;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        setUpMap();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setUpMap();
-    }
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-        if (mMap != null) {
-            return;
-        }
-        mMap = map;
-        startDemo();
-    }
-
-    private void setUpMap() {
-        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
-    }
-
-    /**
-     * Run the demo-specific code.
-     */
-
-    protected GoogleMap getMap() {
-        return mMap;
-    }
     /**
      * Alternative radius for convolution
      */
-    private static final int ALT_HEATMAP_RADIUS = 50;
+    private static final int ALT_HEATMAP_RADIUS = 100;
 
     /**
      * Alternative opacity of heatmap overlay
@@ -114,64 +79,39 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
     private boolean mDefaultRadius = true;
     private boolean mDefaultOpacity = true;
 
-    /**
-     * Maps name of data set to data (list of LatLngs)
-     * Also maps to the URL of the data set for attribution
-     */
-    private HashMap<String, DataSet> mListsS = new HashMap<String, DataSet>();
-    private HashMap<String, DataSet> mListsYr = new HashMap<String, DataSet>();
-    private HashMap<String, DataSet> mLists = new HashMap<String, DataSet>();
-
     protected int getLayoutId() {
         return R.layout.activity_maps;
     }
 
+    /**
+     * Maps name of data set to data (list of LatLngs)
+     */
+    private HashMap<String, DataSet> mLists = new HashMap<String, DataSet>();
+
+    private String year = "yr2019";
+    private String season = "spring";
+
+    /**
+     * Run the demo-specific code.
+     */
     protected void startDemo() {
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(41.30, -72.92), 4));
 
         // Set up the season spinner/dropdown list
         Spinner spinnerS = (Spinner) findViewById(R.id.spinner_s);
         ArrayAdapter<CharSequence> adapterS = ArrayAdapter.createFromResource(this,
-                R.array.heatmaps_datasets_array_season, android.R.layout.simple_spinner_item);
+                R.array.heatmaps_array_season, android.R.layout.simple_spinner_item);
         adapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerS.setAdapter(adapterS);
-//        spinnerS.setOnItemSelectedListener(new SpinnerActivity());
-
-        try {
-            mListsS.put(getString(R.string.spring), new DataSet(readItems(R.raw.yr2019springwhiteflies),
-                    getString(R.string.spring_url)));
-            mListsS.put(getString(R.string.summer), new DataSet(readItems(R.raw.yr2019summerwhiteflies),
-                    getString(R.string.summer_url)));
-            mListsS.put(getString(R.string.fall), new DataSet(readItems(R.raw.yr2019fallwhiteflies),
-                    getString(R.string.fall_url)));
-            mListsS.put(getString(R.string.winter), new DataSet(readItems(R.raw.yr2019winterwhiteflies),
-                    getString(R.string.winter_url)));
-        } catch (JSONException e) {
-            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
-        }
+        spinnerS.setOnItemSelectedListener(new SpinnerActivity_s());
 
         // Set up the year spinner/dropdown list
         Spinner spinnerYr = (Spinner) findViewById(R.id.spinner_yr);
         ArrayAdapter<CharSequence> adapterYr = ArrayAdapter.createFromResource(this,
-                R.array.heatmaps_datasets_array_yr, android.R.layout.simple_spinner_item);
+                R.array.heatmaps_array_yr, android.R.layout.simple_spinner_item);
         adapterYr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerYr.setAdapter(adapterYr);
-//        spinnerYr.setOnItemSelectedListener(new SpinnerActivity());
-
-        try {
-            mListsYr.put(getString(R.string.yr2019), new DataSet(readItems(R.raw.yr2019springwhiteflies),
-                    getString(R.string.yr2019_url)));
-            mListsYr.put(getString(R.string.yr2018), new DataSet(readItems(R.raw.yr2018springwhiteflies),
-                    getString(R.string.yr2018_url)));
-            mListsYr.put(getString(R.string.yr2017), new DataSet(readItems(R.raw.yr2017springwhiteflies),
-                    getString(R.string.yr2017_url)));
-            mListsYr.put(getString(R.string.yr2016), new DataSet(readItems(R.raw.yr2016springwhiteflies),
-                    getString(R.string.yr2016_url)));
-            mListsYr.put(getString(R.string.yr2015), new DataSet(readItems(R.raw.yr2015springwhiteflies),
-                    getString(R.string.yr2015_url)));
-        } catch (JSONException e) {
-            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
-        }
+        spinnerYr.setOnItemSelectedListener(new SpinnerActivity_yr());
 
         // Set up the pest spinner/dropdown list
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -180,15 +120,6 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new SpinnerActivity());
-
-        try {
-            mLists.put(getString(R.string.whiteflies), new DataSet(readItems(R.raw.yr2019springwhiteflies),
-                    getString(R.string.whiteflies_url)));
-            mLists.put(getString(R.string.brown_stink_bug), new DataSet(readItems(R.raw.yr2019springbrown_stink_bug),
-                    getString(R.string.brown_Stink_Bug_url)));
-        } catch (JSONException e) {
-            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
-        }
     }
 
     public void changeRadius(View view) {
@@ -222,27 +153,60 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     // Dealing with spinner choices
+    public class SpinnerActivity_s implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            season = parent.getItemAtPosition(pos).toString();
+            System.out.println(season);
+        }
+
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Another interface callback
+        }
+    }
+
+    public class SpinnerActivity_yr implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            year = parent.getItemAtPosition(pos).toString();
+            System.out.println(year);
+        }
+
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Another interface callback
+        }
+    }
+
     public class SpinnerActivity implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> parent, View view,
                                    int pos, long id) {
-            String dataset = parent.getItemAtPosition(pos).toString();
+            String dataset = year + season + parent.getItemAtPosition(pos).toString();
+            System.out.println(dataset);
 
-            TextView attribution = ((TextView) findViewById(R.id.attribution));
+            String jsonName1 = year + season + getString(R.string.whiteflies);
+            System.out.println("jsNm1"+ jsonName1);
+            int resource1 = getResources().getIdentifier(jsonName1, "raw", getPackageName());
+            String jsonName2 = year + season + getString(R.string.brown_stink_bug);
+            System.out.println("jsNm2"+ jsonName1);
+            int resource2 = getResources().getIdentifier(jsonName2, "raw", getPackageName());
+
+            try {
+                mLists.put((jsonName1), new DataSet(readItems(resource1)));
+                mLists.put((jsonName2), new DataSet(readItems(resource2)));
+            } catch (JSONException e) {
+                e.getMessage();
+            }
 
             // Check if need to instantiate (avoid setData etc twice)
             if (mProvider == null) {
                 mProvider = new HeatmapTileProvider.Builder().data(
-                        mLists.get(getString(R.string.whiteflies)).getData()).build();
+                        mLists.get(dataset).getData()).build();
                 mOverlay = getMap().addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
                 // Render links
-                attribution.setMovementMethod(LinkMovementMethod.getInstance());
             } else {
                 mProvider.setData(mLists.get(dataset).getData());
                 mOverlay.clearTileCache();
             }
-            // Update attribution
-            attribution.setText(Html.fromHtml(String.format(getString(R.string.attrib_format),
-                    mLists.get(dataset).getUrl())));
 
         }
 
@@ -271,20 +235,23 @@ public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallb
      */
     private class DataSet {
         private ArrayList<LatLng> mDataset;
-        private String mUrl;
 
-        public DataSet(ArrayList<LatLng> dataSet, String url) {
+        public DataSet(ArrayList<LatLng> dataSet) {
             this.mDataset = dataSet;
-            this.mUrl = url;
         }
 
         public ArrayList<LatLng> getData() {
             return mDataset;
         }
+    }
 
-        public String getUrl() {
-            return mUrl;
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
 }
