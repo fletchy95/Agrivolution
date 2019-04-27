@@ -41,12 +41,56 @@ import java.util.Scanner;
  * create a colored map overlay that visualises many points of weighted importance/intensity, with
  * different colors representing areas of high and low concentration/combined intensity of points.
  */
+<<<<<<< Updated upstream
 public class HeatmapActivity extends BaseDemoActivity {
 
     /**
      * Alternative radius for convolution
      */
     private static final int ALT_HEATMAP_RADIUS = 100;
+=======
+public class HeatmapActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private static GoogleMap mMap;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+        setUpMap();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpMap();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        if (mMap != null) {
+            return;
+        }
+        mMap = map;
+        startDemo();
+    }
+
+    private void setUpMap() {
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+    }
+
+    /**
+     * Run the demo-specific code.
+     */
+
+    protected GoogleMap getMap() {
+        return mMap;
+    }
+    /**
+     * Alternative radius for convolution
+     */
+    private static final int ALT_HEATMAP_RADIUS = 10;
+>>>>>>> Stashed changes
 
     /**
      * Alternative opacity of heatmap overlay
@@ -79,6 +123,7 @@ public class HeatmapActivity extends BaseDemoActivity {
     private boolean mDefaultRadius = true;
     private boolean mDefaultOpacity = true;
 
+<<<<<<< Updated upstream
     protected int getLayoutId() {
         return R.layout.activity_maps;
     }
@@ -114,12 +159,42 @@ public class HeatmapActivity extends BaseDemoActivity {
         spinnerYr.setOnItemSelectedListener(new SpinnerActivity_yr());
 
         // Set up the pest spinner/dropdown list
+=======
+    /**
+     * Maps name of data set to data (list of LatLngs)
+     * Also maps to the URL of the data set for attribution
+     */
+    private HashMap<String, DataSet> mLists = new HashMap<String, DataSet>();
+
+    protected int getLayoutId() {
+        return R.layout.activity_maps;
+    }
+
+    protected void startDemo() {
+        getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(41.30, -72.92), 4));
+
+        // Set up the spinner/dropdown list
+>>>>>>> Stashed changes
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.heatmaps_datasets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new SpinnerActivity());
+<<<<<<< Updated upstream
+=======
+
+        try {
+            mLists.put(getString(R.string.pest), new DataSet(readItems(R.raw.pest),
+                    getString(R.string.pest_url)));
+            mLists.put(getString(R.string.pest2), new DataSet(readItems(R.raw.pest2),
+                    getString(R.string.pest2_url)));
+            mLists.put(getString(R.string.pest3), new DataSet(readItems(R.raw.pest3),
+                    getString(R.string.pest3_url)));
+        } catch (JSONException e) {
+            Toast.makeText(this, "Problem reading list of markers.", Toast.LENGTH_LONG).show();
+        }
+>>>>>>> Stashed changes
     }
 
     public void changeRadius(View view) {
@@ -153,6 +228,7 @@ public class HeatmapActivity extends BaseDemoActivity {
     }
 
     // Dealing with spinner choices
+<<<<<<< Updated upstream
     public class SpinnerActivity_s implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> parent, View view,
                                    int pos, long id) {
@@ -196,17 +272,38 @@ public class HeatmapActivity extends BaseDemoActivity {
             } catch (JSONException e) {
                 e.getMessage();
             }
+=======
+    public class SpinnerActivity implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            String dataset = parent.getItemAtPosition(pos).toString();
+
+            TextView attribution = ((TextView) findViewById(R.id.attribution));
+>>>>>>> Stashed changes
 
             // Check if need to instantiate (avoid setData etc twice)
             if (mProvider == null) {
                 mProvider = new HeatmapTileProvider.Builder().data(
+<<<<<<< Updated upstream
                         mLists.get(dataset).getData()).build();
                 mOverlay = getMap().addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
                 // Render links
+=======
+                        mLists.get(getString(R.string.pest)).getData()).build();
+                mOverlay = getMap().addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+                // Render links
+                attribution.setMovementMethod(LinkMovementMethod.getInstance());
+>>>>>>> Stashed changes
             } else {
                 mProvider.setData(mLists.get(dataset).getData());
                 mOverlay.clearTileCache();
             }
+<<<<<<< Updated upstream
+=======
+            // Update attribution
+            attribution.setText(Html.fromHtml(String.format(getString(R.string.attrib_format),
+                    mLists.get(dataset).getUrl())));
+>>>>>>> Stashed changes
 
         }
 
@@ -235,14 +332,23 @@ public class HeatmapActivity extends BaseDemoActivity {
      */
     private class DataSet {
         private ArrayList<LatLng> mDataset;
+<<<<<<< Updated upstream
 
         public DataSet(ArrayList<LatLng> dataSet) {
             this.mDataset = dataSet;
+=======
+        private String mUrl;
+
+        public DataSet(ArrayList<LatLng> dataSet, String url) {
+            this.mDataset = dataSet;
+            this.mUrl = url;
+>>>>>>> Stashed changes
         }
 
         public ArrayList<LatLng> getData() {
             return mDataset;
         }
+<<<<<<< Updated upstream
     }
 
     @Override
@@ -252,6 +358,12 @@ public class HeatmapActivity extends BaseDemoActivity {
     @Override
     protected void onStop() {
         super.onStop();
+=======
+
+        public String getUrl() {
+            return mUrl;
+        }
+>>>>>>> Stashed changes
     }
 
 }
