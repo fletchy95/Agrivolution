@@ -35,7 +35,6 @@
 
     </LinearLayout>
 
-<<<<<<< Updated upstream
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -57,11 +56,6 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-=======
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="fill_parent"
->>>>>>> Stashed changes
         android:layout_height="wrap_content" />
 
     <fragment
@@ -72,12 +66,4 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         tools:context=".HeatmapActivity"/>
 
-<<<<<<< Updated upstream
-=======
-    <TextView
-        android:id="@+id/attribution"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
->>>>>>> Stashed changes
 </LinearLayout>
