@@ -44,6 +44,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="input_text">Looking for…</string>
     <string name="button_send">Go!</string>
+<<<<<<< Updated upstream
     <string name="whiteflies">whiteflies</string>
     <string name="brown_stink_bug">brown_stink_bug</string>
     <string name="spring">spring</string>
@@ -84,9 +85,26 @@
     <string-array name="heatmaps_datasets_array">
         <item>@string/whiteflies</item>
         <item>@string/brown_stink_bug</item>
+=======
+    <string name="pest">Whiteflies</string>
+    <string name="pest2">Brown Stink Bug</string>
+    <string name="pest3">Soybean Thrips</string>
+    <string name="attrib_format">Data from &lt;a href = "%s">data.agri.us&lt;/a>, modified under &lt;a href = \"http://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 US&lt;/a></string>
+    <string name="pest_url">http://data.agri.us</string>
+    <string name="pest2_url">http://data.agri.us</string>
+    <string name="pest3_url">http://data.agri.us</string>
+    <string name="geojson_url">http://data.agri.us</string>
+    <string-array name="heatmaps_datasets_array">
+        <item>@string/pest</item>
+        <item>@string/pest2</item>
+        <item>@string/pest3</item>
+>>>>>>> Stashed changes
     </string-array>
     <string name="button_radius">Radius</string>
     <string name="button_gradient">Gradient</string>
     <string name="button_opacity">Opacity</string>
+<<<<<<< Updated upstream
     <string name="where_would_you_like_to_go">Where would you like to go?</string>
+=======
+>>>>>>> Stashed changes
 </resources>
