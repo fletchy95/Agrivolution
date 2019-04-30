@@ -1,37 +1,22 @@
 package com.example.vanda.agrivolution;
 
-public class Ticket
-{
+public class Blog {
+    private String ticketTitle;
+    private String description;
     private String farmName;
-    private String farmAddress;
     private String farmArea;
     private String farmState;
-    private String farmPin;
-    private String ticketTitle;
     private String date;
-    private String email;
-    private String optionalContact;
-    private String description;
     private String imageURL;
     private String status;
     private String Key;
     private String postedBy;
     private String userId;
 
-    public Ticket(){
+    public Blog(){
 
     }
-
-    public Ticket(String ticketTitle,String description,String farmName,String date,String status, String url, String key){
-        this.ticketTitle = ticketTitle;
-        this.description = description;
-        this.farmName = farmName;
-        this.date = date;
-        this.status = status;
-        this.imageURL = url;
-        this.Key = key;
-    }
-    public Ticket(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String key){
+    public Blog(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String id,String key){
         this.ticketTitle = ticketTitle;
         this.description = description;
         this.farmName = farmName;
@@ -42,39 +27,14 @@ public class Ticket
         this.postedBy = name;
         this.imageURL = url;
         this.Key = key;
+        this.userId = id;
     }
-    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name, String UserId)
-    {
-        this.farmName = farmName;
-        this.farmAddress = farmAddress;
-        this.farmArea = farmArea;
-        this.farmState = farmState;
-        this.farmPin = farmPin;
-        this.ticketTitle = ticketTitle;
-        this.date = date;
-        this.email = email;
-        this.optionalContact = optionalContact;
-        this.description = description;
-        this.imageURL = imageURL;
-        this.status = status;
-        this.postedBy = name;
-        this.userId = UserId;
-    }
-
     public String getFarmName() {
         return farmName;
     }
 
     public void setFarmName(String farmName) {
         this.farmName = farmName;
-    }
-
-    public String getFarmAddress() {
-        return farmAddress;
-    }
-
-    public void setFarmAddress(String farmAddress) {
-        this.farmAddress = farmAddress;
     }
 
     public String getFarmArea() {
@@ -93,14 +53,6 @@ public class Ticket
         this.farmState = farmState;
     }
 
-    public String getFarmPin() {
-        return farmPin;
-    }
-
-    public void setFarmPin(String farmPin) {
-        this.farmPin = farmPin;
-    }
-
     public String getTicketTitle() {
         return ticketTitle;
     }
@@ -115,22 +67,6 @@ public class Ticket
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getOptionalContact() {
-        return optionalContact;
-    }
-
-    public void setOptionalContact(String optionalContact) {
-        this.optionalContact = optionalContact;
     }
 
     public String getDescription() {
@@ -171,5 +107,6 @@ public class Ticket
     public String getUserId() {
         return userId;
     }
+
 
 }
