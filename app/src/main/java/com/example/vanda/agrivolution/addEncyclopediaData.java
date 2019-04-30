@@ -51,9 +51,7 @@ public class addEncyclopediaData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_encyclopedia_data);
-
-
-        mSelectImage =(ImageButton) findViewById(R.id.imageSelect);
+        mSelectImage = (ImageButton) findViewById(R.id.imageSelect);
         mName = (EditText)findViewById(R.id.nameField);
         mType = (EditText)findViewById(R.id.typeField);
         mHost = (EditText)findViewById(R.id.hostField);
@@ -61,7 +59,7 @@ public class addEncyclopediaData extends AppCompatActivity {
         mSymptom = (EditText)findViewById(R.id.symptomsField);
         mTrigger = (EditText)findViewById(R.id.triggerField);
         mPreventiveMeasure = (EditText)findViewById(R.id.prevMeasureField);
-        mBiologicalControl =(EditText)findViewById(R.id.bioField);
+        mBiologicalControl = (EditText)findViewById(R.id.bioField);
         mChemicalControl = (EditText)findViewById(R.id.chemField);
         mSubmit = (Button) findViewById(R.id.submitButton);
 
@@ -94,12 +92,12 @@ public class addEncyclopediaData extends AppCompatActivity {
         String PestName = mName.getText().toString().trim();
         String PestType = mType.getText().toString().trim();
         String PestHost = mHost.getText().toString().trim();
-        String PestDesc =mDescription.getText().toString().trim();
+        String PestDesc = mDescription.getText().toString().trim();
         String PestSymptom = mSymptom.getText().toString().trim();
         String PestTrigger = mTrigger.getText().toString().trim();
         String PestPrevMeasure = mPreventiveMeasure.getText().toString().trim();
-        String PestBioControl =mBiologicalControl.getText().toString().trim();
-        String PestChemControl =mChemicalControl.getText().toString().trim();
+        String PestBioControl = mBiologicalControl.getText().toString().trim();
+        String PestChemControl = mChemicalControl.getText().toString().trim();
 
 
         if(!TextUtils.isEmpty(PestName)&& !TextUtils.isEmpty(PestType)&& mImageUri!= null){

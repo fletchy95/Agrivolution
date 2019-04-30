@@ -4,24 +4,61 @@ public class Ticket
 {
     private String farmName;
     private String farmAddress;
-    private String locationDetails;
+    private String farmArea;
+    private String farmState;
+    private String farmPin;
     private String ticketTitle;
     private String date;
     private String email;
     private String optionalContact;
     private String description;
-    //private String userID;
-    public Ticket(String farmName, String farmAddress, String locationDetails, String ticketTitle, String date, String email, String optionalContact, String description)
+    private String imageURL;
+    private String status;
+    private String Key;
+    private String postedBy;
+    private String userId;
+
+    public Ticket(){
+
+    }
+
+    public Ticket(String ticketTitle,String description,String farmName,String date,String status, String url, String key){
+        this.ticketTitle = ticketTitle;
+        this.description = description;
+        this.farmName = farmName;
+        this.date = date;
+        this.status = status;
+        this.imageURL = url;
+        this.Key = key;
+    }
+    public Ticket(String ticketTitle,String description,String farmName, String farmArea, String farmState,String date,String status, String name,String url, String key){
+        this.ticketTitle = ticketTitle;
+        this.description = description;
+        this.farmName = farmName;
+        this.farmArea = farmArea;
+        this.farmState = farmState;
+        this.date = date;
+        this.status = status;
+        this.postedBy = name;
+        this.imageURL = url;
+        this.Key = key;
+    }
+    public Ticket(String farmName, String farmAddress, String farmArea, String farmState, String farmPin, String ticketTitle, String date, String email, String optionalContact, String description, String imageURL, String status,String name, String UserId)
     {
         this.farmName = farmName;
         this.farmAddress = farmAddress;
-        this.locationDetails = locationDetails;
+        this.farmArea = farmArea;
+        this.farmState = farmState;
+        this.farmPin = farmPin;
         this.ticketTitle = ticketTitle;
         this.date = date;
         this.email = email;
         this.optionalContact = optionalContact;
         this.description = description;
-      //  this.userID = userID;
+        this.imageURL = imageURL;
+        this.status = status;
+        this.postedBy = name;
+        this.userId = UserId;
     }
 
     public String getFarmName() {
@@ -40,12 +77,28 @@ public class Ticket
         this.farmAddress = farmAddress;
     }
 
-    public String getLocationDetails() {
-        return locationDetails;
+    public String getFarmArea() {
+        return farmArea;
     }
 
-    public void setLocationDetails(String locationDetails) {
-        this.locationDetails = locationDetails;
+    public void setFarmArea(String farmArea) {
+        this.farmArea = farmArea;
+    }
+
+    public String getFarmState() {
+        return farmState;
+    }
+
+    public void setFarmState(String farmState) {
+        this.farmState = farmState;
+    }
+
+    public String getFarmPin() {
+        return farmPin;
+    }
+
+    public void setFarmPin(String farmPin) {
+        this.farmPin = farmPin;
     }
 
     public String getTicketTitle() {
@@ -87,12 +140,36 @@ public class Ticket
     public void setDescription(String description) {
         this.description = description;
     }
-//    public String getUpdatedby() {
-//        return userID;
-//    }
-//
-//    public void setUpdatedBy(String farmName) {
-//        this.userID = userID;
-//    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String userID) {
+        this.status = status;
+    }
+    public void setKey(String key) {Key = key;}
+
+    public String getKey() {
+        return Key;
+    }
+    public void setPostedBy(String name) {postedBy = name;}
+
+    public String getPostedBy() {
+        return postedBy;
+    }
+    public void setUserId(String id) {this.userId = id;}
+
+    public String getUserId() {
+        return userId;
+    }
 
 }
