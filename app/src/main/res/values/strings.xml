@@ -44,18 +44,46 @@
     <string name="title_activity_maps">Map</string>
     <string name="input_text">Looking for…</string>
     <string name="button_send">Go!</string>
-    <string name="pest">Whiteflies</string>
-    <string name="pest2">Brown Stink Bug</string>
-    <string name="pest3">Soybean Thrips</string>
+    <string name="whiteflies">whiteflies</string>
+    <string name="brown_stink_bug">brown_stink_bug</string>
+    <string name="spring">spring</string>
+    <string name="summer">summer</string>
+    <string name="fall">fall</string>
+    <string name="winter">winter</string>
+    <string name="yr2019">yr2019</string>
+    <string name="yr2018">yr2018</string>
+    <string name="yr2017">yr2017</string>
+    <string name="yr2016">yr2016</string>
+    <string name="yr2015">yr2015</string>
     <string name="attrib_format">Data from &lt;a href = "%s">data.agri.us&lt;/a>, modified under &lt;a href = \"http://creativecommons.org/licenses/by/3.0/au/\">CC BY 3.0 US&lt;/a></string>
-    <string name="pest_url">http://data.agri.us</string>
-    <string name="pest2_url">http://data.agri.us</string>
-    <string name="pest3_url">http://data.agri.us</string>
+    <string name="whiteflies_url">http://data.agri.us</string>
+    <string name="brown_stink_bug_url">http://data.agri.us</string>
+    <string name="spring_url">http://data.agri.us</string>
+    <string name="summer_url">http://data.agri.us</string>
+    <string name="fall_url">http://data.agri.us</string>
+    <string name="winter_url">http://data.agri.us</string>
+    <string name="yr2019_url">http://data.agri.us</string>
+    <string name="yr2018_url">http://data.agri.us</string>
+    <string name="yr2017_url">http://data.agri.us</string>
+    <string name="yr2016_url">http://data.agri.us</string>
+    <string name="yr2015_url">http://data.agri.us</string>
     <string name="geojson_url">https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson</string>
+    <string-array name="heatmaps_array_season">
+        <item>@string/spring</item>
+        <item>@string/summer</item>
+        <item>@string/fall</item>
+        <item>@string/winter</item>
+    </string-array>
+    <string-array name="heatmaps_array_yr">
+        <item>@string/yr2019</item>
+        <item>@string/yr2018</item>
+        <item>@string/yr2017</item>
+        <item>@string/yr2016</item>
+        <item>@string/yr2015</item>
+    </string-array>
     <string-array name="heatmaps_datasets_array">
-        <item>@string/pest</item>
-        <item>@string/pest2</item>
-        <item>@string/pest3</item>
+        <item>@string/whiteflies</item>
+        <item>@string/brown_stink_bug</item>
     </string-array>
     <string name="button_radius">Radius</string>
     <string name="button_gradient">Gradient</string>
