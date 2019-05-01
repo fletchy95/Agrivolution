@@ -1,15 +1,15 @@
 # Agrivolution
-There is a new wave of farmers
-Long time farmers are retiring
-New farmers are entering the career
-Many new farmers are inexperienced
-Disease and Pests
-Crop Loss
-Money Loss
-
-Bridging the gap between Farmers and Experts
-Provide solutions to farmers
-Notify users of current dangers
-Predict future pest and disease trends
-Mobile Application
+<h3>The Problem</h3><br>
+There is a new wave of farmers.  Lots of old time farmers are currently retiring and new ones are entering the workforce.  
+This causes a lack of knowledge in the area which allows pest and disease to overtake the farmers crops.  This means we loose crops
+which in turn means we loose money.  
+<br><br>
+<h3>Project Description</h3><br>
+We are to bridge the gap between farmers and experts.  We need to develop an Android Mobile Application so farmers can communicate
+with experts and resolve issues quickly.  This in turn will save crops and save money.  We should have a ticketing system, 
+encyclopedia for pest and disease, and a map to view the current trends.  
+<br><br>
+<h3>Advisors</h3>
+Professor Adrian Rusu of Fairfield Unviersity<br>
+Richard Fu of Agrivolution 
 
